@@ -21,6 +21,12 @@ namespace Telematics.Server.Controllers
             return "value";
         }
 
+        // GET api/values/5
+        public string GetSquared(int id)
+        {
+            return (id * id).ToString();
+        }
+
         // POST api/values
         public void Post([FromBody]string value)
         {
