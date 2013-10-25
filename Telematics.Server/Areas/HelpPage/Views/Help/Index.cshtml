@@ -1,5 +1,4 @@
 @using System.Web.Http
-@using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
 @using Telematics.Server.Areas.HelpPage.Models
@@ -9,7 +8,7 @@
     ViewBag.Title = "ASP.NET Web API Help Page";
 
     // Group APIs by controller
-    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+    ILookup<string, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor.ControllerName);
 }
 
 <header>

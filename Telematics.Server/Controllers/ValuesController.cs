@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Telematics.Server.Models;
 
 namespace Telematics.Server.Controllers
 {
@@ -21,20 +22,16 @@ namespace Telematics.Server.Controllers
             return "value";
         }
 
-        // GET api/values/5
-        public string GetSquared(int id)
-        {
-            return (id * id).ToString();
-        }
-
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Car value)
         {
+            Console.WriteLine("GOT A POST");
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
+            Console.WriteLine("GOT A PUT");
         }
 
         // DELETE api/values/5

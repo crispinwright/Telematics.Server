@@ -7,6 +7,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Telematics.Server;
 using Telematics.Server.Controllers;
+using Telematics.Server.Models;
 
 namespace Telematics.Server.Tests.Controllers
 {
@@ -49,7 +50,7 @@ namespace Telematics.Server.Tests.Controllers
             ValuesController controller = new ValuesController();
 
             // Act
-            controller.Post("value");
+            //controller.Post(new Car{EngineSize = 2898,Make = "Toyota"});
 
             // Assert
         }
