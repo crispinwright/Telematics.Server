@@ -46,6 +46,9 @@ namespace Telematics.Server.Controllers
             vehicleSpeedPoint.Speed = 54;
 
             user.VehicleSpeeds.Add(vehicleSpeedPoint);
+            
+            
+            var y = context.Users.Select(x => x.ID == 1).FirstOrDefault();
 
             context.SaveChanges();
 
