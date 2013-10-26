@@ -27,12 +27,28 @@ namespace Telematics.Server.Controllers
         {
             var context = new geoEntities();
 
-            var x = new User();
+            var user = new User();
 
-            x.DeviceID = value.Make;
-            context.Users.Add(x);
+            var vehicle = new UserVehicle();
+            var vehicleSpeedPoint = new VehicleSpeed();
+
+            user.DeviceID = value.Make + "asfdaasdadssd";
+            context.Users.Add(user);
+
+            vehicle.UserID = user.ID;
+            vehicle.Name = "TestMeMore";
+            user.UserVehicles.Add(vehicle);
+
+            vehicleSpeedPoint.VehicleID = vehicle.ID;
+
+            vehicleSpeedPoint.Lat = 51.11m;
+            vehicleSpeedPoint.Lon = 24.22m;
+            vehicleSpeedPoint.Speed = 54;
+
+            user.VehicleSpeeds.Add(vehicleSpeedPoint);
 
             context.SaveChanges();
+
         }
 
         // PUT api/values/5
