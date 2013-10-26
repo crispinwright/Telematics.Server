@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Telematics.Server.Models;
-
+using Telematics.Server.DataModels;
 namespace Telematics.Server.Controllers
 {
     public class ValuesController : ApiController
@@ -25,7 +25,14 @@ namespace Telematics.Server.Controllers
         // POST api/values
         public void Post([FromBody]Car value)
         {
-            Console.WriteLine("GOT A POST");
+            var context = new geoEntities();
+
+            var x = new User();
+
+            x.DeviceID = value.Make;
+            context.Users.Add(x);
+
+            context.SaveChanges();
         }
 
         // PUT api/values/5

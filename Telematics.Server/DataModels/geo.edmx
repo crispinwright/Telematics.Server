@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="geoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserVehicle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleSpeed">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="VehicleID" Type="int" Nullable="false" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Lon" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Speed" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EventTime" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_UserVehicle_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserVehicle" Type="Self.UserVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserVehicle">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleSpeed_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="VehicleSpeed" Type="Self.VehicleSpeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VehicleSpeed">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleSpeed_UserVehicle">
+          <End Role="UserVehicle" Type="Self.UserVehicle" Multiplicity="1" />
+          <End Role="VehicleSpeed" Type="Self.VehicleSpeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserVehicle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VehicleSpeed">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="geoModelStoreContainer">
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserVehicle" EntityType="Self.UserVehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleSpeed" EntityType="Self.VehicleSpeed" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserVehicle_User" Association="Self.FK_UserVehicle_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserVehicle" EntitySet="UserVehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleSpeed_User" Association="Self.FK_VehicleSpeed_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VehicleSpeed" EntitySet="VehicleSpeed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleSpeed_UserVehicle" Association="Self.FK_VehicleSpeed_UserVehicle">
+            <End Role="UserVehicle" EntitySet="UserVehicle" />
+            <End Role="VehicleSpeed" EntitySet="VehicleSpeed" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="geoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserVehicles" Relationship="Self.FK_UserVehicle_User" FromRole="User" ToRole="UserVehicle" />
+          <NavigationProperty Name="VehicleSpeeds" Relationship="Self.FK_VehicleSpeed_User" FromRole="User" ToRole="VehicleSpeed" />
+        </EntityType>
+        <EntityType Name="UserVehicle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserVehicle_User" FromRole="UserVehicle" ToRole="User" />
+          <NavigationProperty Name="VehicleSpeeds" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="UserVehicle" ToRole="VehicleSpeed" />
+        </EntityType>
+        <EntityType Name="VehicleSpeed">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="VehicleID" Type="Int32" Nullable="false" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Lon" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Speed" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EventTime" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="User" Relationship="Self.FK_VehicleSpeed_User" FromRole="VehicleSpeed" ToRole="User" />
+          <NavigationProperty Name="UserVehicle" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="VehicleSpeed" ToRole="UserVehicle" />
+        </EntityType>
+        <Association Name="FK_UserVehicle_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserVehicle" Type="Self.UserVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserVehicle">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleSpeed_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="VehicleSpeed" Type="Self.VehicleSpeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VehicleSpeed">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleSpeed_UserVehicle">
+          <End Role="UserVehicle" Type="Self.UserVehicle" Multiplicity="1" />
+          <End Role="VehicleSpeed" Type="Self.VehicleSpeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserVehicle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VehicleSpeed">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="geoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserVehicles" EntityType="Self.UserVehicle" />
+          <EntitySet Name="VehicleSpeeds" EntityType="Self.VehicleSpeed" />
+          <AssociationSet Name="FK_UserVehicle_User" Association="Self.FK_UserVehicle_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserVehicle" EntitySet="UserVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleSpeed_User" Association="Self.FK_VehicleSpeed_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="VehicleSpeed" EntitySet="VehicleSpeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleSpeed_UserVehicle" Association="Self.FK_VehicleSpeed_UserVehicle">
+            <End Role="UserVehicle" EntitySet="UserVehicles" />
+            <End Role="VehicleSpeed" EntitySet="VehicleSpeeds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="geoModelStoreContainer" CdmEntityContainer="geoEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="geoModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserVehicles">
+            <EntityTypeMapping TypeName="geoModel.UserVehicle">
+              <MappingFragment StoreEntitySet="UserVehicle">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleSpeeds">
+            <EntityTypeMapping TypeName="geoModel.VehicleSpeed">
+              <MappingFragment StoreEntitySet="VehicleSpeed">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
