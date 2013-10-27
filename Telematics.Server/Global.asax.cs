@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Ninject;
+//using Ninject;
 
 namespace Telematics.Server
 {
@@ -17,12 +17,12 @@ namespace Telematics.Server
     public class WebApiApplication : System.Web.HttpApplication
     {
 
-        private IKernel _kernel;
+       // private IKernel _kernel;
 
 
         protected void Application_Start()
         {
-            _kernel = CreateKernel();
+           // _kernel = CreateKernel();
             var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
             xml.UseXmlSerializer = true;
             AreaRegistration.RegisterAllAreas();
@@ -34,13 +34,13 @@ namespace Telematics.Server
         }
 
 
-        protected IKernel CreateKernel()
-        {
-            var f = new FileInfo(this.Server.MapPath("log4net.config"));
-            log4net.Config.XmlConfigurator.ConfigureAndWatch(f);
+        //protected IKernel CreateKernel()
+        //{
+        //    var f = new FileInfo(this.Server.MapPath("log4net.config"));
+        //    log4net.Config.XmlConfigurator.ConfigureAndWatch(f);
 
-            //KernelContainer.Kernel = ServiceLocator.Initialize(new StandardKernel(new ServiceModule(), new ContentModule()));
-            return new StandardKernel();
-        }
+        //    //KernelContainer.Kernel = ServiceLocator.Initialize(new StandardKernel(new ServiceModule(), new ContentModule()));
+        //    return new StandardKernel();
+        //}
     }
 }

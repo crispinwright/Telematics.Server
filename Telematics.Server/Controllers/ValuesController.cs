@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Spatial;
 using System.Web.Http;
-using Telematics.Server.Models;
 using Telematics.Server.DataModels;
+
+
 namespace Telematics.Server.Controllers
 {
     public class ValuesController : ApiController
@@ -34,11 +33,22 @@ namespace Telematics.Server.Controllers
             var vehicleSpeedPoint = new VehicleSpeed();
 
             user.DeviceID = geoData.PointTable.DeviceID;
+            foreach (var point in geoData.PointTable.Point)
+            {
+                Debug.WriteLine(point.Lat);
+                Debug.WriteLine(point.Lon);
+                Debug.WriteLine(point.Speed);
+                Debug.WriteLine(point.UTCTime);
+            }
+
+
             context.Users.Add(user);
 
             vehicle.UserID = user.ID;
             vehicle.Name = "TestMeMore";
             user.UserVehicles.Add(vehicle);
+
+
 
             vehicleSpeedPoint.VehicleID = vehicle.ID;
 
