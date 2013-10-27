@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<GEOMain sendTime="2013-10-27T18:16:26.140625Z">
+  <PointTable UserID="1" DeviceID="2">
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+    <Point Lon="37.0111624" Lat="175.0405582" Speed="76" UTCTime="27/10/2013 06:44:50"/>
+  </PointTable>
+</GEOMain>

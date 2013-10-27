@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GEOMain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PointTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Point">
+                <xs:complexType>
+                  <xs:attribute name="Lon" type="xs:decimal" use="required" />
+                  <xs:attribute name="Lat" type="xs:decimal" use="required" />
+                  <xs:attribute name="Speed" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="UTCTime" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="UserID" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="DeviceID" type="xs:unsignedByte" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="sendTime" type="xs:dateTime" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
