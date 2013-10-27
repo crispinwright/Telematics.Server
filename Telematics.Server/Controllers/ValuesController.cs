@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Spatial;
 using System.Web.Http;
 using Telematics.Server.Models;
 using Telematics.Server.DataModels;
@@ -23,7 +24,7 @@ namespace Telematics.Server.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]Car value)
+        public void Post([FromBody]GEOMain geoData)
         {
             var context = new geoEntities();
 
@@ -32,7 +33,7 @@ namespace Telematics.Server.Controllers
             var vehicle = new UserVehicle();
             var vehicleSpeedPoint = new VehicleSpeed();
 
-            user.DeviceID = value.Make + "asfdaasdadssd";
+            user.DeviceID = geoData.PointTable.DeviceID;
             context.Users.Add(user);
 
             vehicle.UserID = user.ID;
