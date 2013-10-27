@@ -1,4 +1,5 @@
 ﻿# WebUtility functions
+#http://localhost/api/values C:\Users\Crispin\Documents\Visual Studio 2013\Projects\Telematics.Server\Telematics.Server\xml\geoTelematicsSample.xml C:\Workspace\Powershell\response.xml
 function PostXmlToUrl($uploadUrl, $xmlDocToPost, $saveFileName)
 {
 	$client = new-object System.Net.WebClient;
