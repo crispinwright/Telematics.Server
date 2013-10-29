@@ -1,0 +1,1 @@
+xsd  geoTelematics.xsd /c /o:..\Models\

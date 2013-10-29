@@ -11,7 +11,7 @@
                   <xs:attribute name="Lon" type="xs:decimal" use="required" />
                   <xs:attribute name="Lat" type="xs:decimal" use="required" />
                   <xs:attribute name="Speed" type="xs:unsignedByte" use="required" />
-                  <xs:attribute name="UTCTime" type="xs:string" use="required" />
+                  <xs:attribute name="UTCTime" type="xs:dateTime" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

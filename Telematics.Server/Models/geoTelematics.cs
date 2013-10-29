@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 
 // 
@@ -58,8 +56,7 @@ public partial class GEOMain {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class GEOMainPointTable
-{
+public partial class GEOMainPointTable {
     
     private GEOMainPointTablePoint[] pointField;
     
@@ -99,7 +96,6 @@ public partial class GEOMainPointTable
             this.deviceIDField = value;
         }
     }
-
 }
 
 /// <remarks/>
@@ -108,8 +104,7 @@ public partial class GEOMainPointTable
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class GEOMainPointTablePoint
-{
+public partial class GEOMainPointTablePoint {
     
     private decimal lonField;
     
@@ -117,7 +112,7 @@ public partial class GEOMainPointTablePoint
     
     private byte speedField;
     
-    private string uTCTimeField;
+    private System.DateTime uTCTimeField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -154,7 +149,7 @@ public partial class GEOMainPointTablePoint
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string UTCTime {
+    public System.DateTime UTCTime {
         get {
             return this.uTCTimeField;
         }

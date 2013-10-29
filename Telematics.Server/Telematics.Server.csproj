@@ -289,7 +289,7 @@
     </Content>
     <Content Include="Powershell\PSCurl.ps1" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="xml\geoTelematicsSample.xml">
+    <Content Include="Xml\geoTelematicsSample.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -336,7 +336,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <None Include="xml\geoTelematics.xsd">
+    <Content Include="Xml\generatecode.cmd" />
+    <None Include="Xml\geoTelematics.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
