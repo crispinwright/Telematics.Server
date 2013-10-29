@@ -58,20 +58,20 @@ public partial class GEOMain {
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 public partial class GEOMainPointTable {
     
-    private GEOMainPointTablePoint[] pointField;
+    private GEOMainPointTablePoints[] pointsField;
     
     private int userIDField;
     
     private string deviceIDField;
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("Point")]
-    public GEOMainPointTablePoint[] Point {
+    [System.Xml.Serialization.XmlElementAttribute("Points")]
+    public GEOMainPointTablePoints[] Points {
         get {
-            return this.pointField;
+            return this.pointsField;
         }
         set {
-            this.pointField = value;
+            this.pointsField = value;
         }
     }
     
@@ -104,7 +104,7 @@ public partial class GEOMainPointTable {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class GEOMainPointTablePoint {
+public partial class GEOMainPointTablePoints {
     
     private decimal lonField;
     

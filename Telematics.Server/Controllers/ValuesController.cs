@@ -27,13 +27,7 @@ namespace Telematics.Server.Controllers
         {
             var context = new geoEntities();
 
-            var user = new User();
-
-            var vehicle = new UserVehicle();
-            var vehicleSpeedPoint = new VehicleSpeed();
-
-            user.DeviceID = geoData.PointTable.DeviceID;
-            foreach (var point in geoData.PointTable.Point)
+            foreach (var point in geoData.PointTable.Points)
             {
                 Debug.WriteLine(point.Lat);
                 Debug.WriteLine(point.Lon);
@@ -42,6 +36,16 @@ namespace Telematics.Server.Controllers
             }
 
 
+
+            context.SaveChanges();
+        }
+
+        private void addStuff()
+        {
+            var vehicle = new UserVehicle();
+            var vehicleSpeedPoint = new VehicleSpeed();
+            var context = new geoEntities();
+            var user = new User();
             context.Users.Add(user);
 
             vehicle.UserID = user.ID;
@@ -49,19 +53,9 @@ namespace Telematics.Server.Controllers
             user.UserVehicles.Add(vehicle);
 
 
-
             vehicleSpeedPoint.VehicleID = vehicle.ID;
 
-            vehicleSpeedPoint.Lat = 51.11m;
-            vehicleSpeedPoint.Lon = 24.22m;
-            vehicleSpeedPoint.Speed = 54;
-
-            user.VehicleSpeeds.Add(vehicleSpeedPoint);
-            
-            
             var y = context.Users.Select(x => x.ID == 1).FirstOrDefault();
-
-            context.SaveChanges();
 
         }
 

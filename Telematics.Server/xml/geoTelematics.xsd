@@ -6,7 +6,7 @@
         <xs:element name="PointTable">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="Point">
+              <xs:element maxOccurs="unbounded" name="Points">
                 <xs:complexType>
                   <xs:attribute name="Lon" type="xs:decimal" use="required" />
                   <xs:attribute name="Lat" type="xs:decimal" use="required" />
