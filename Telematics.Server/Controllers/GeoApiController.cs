@@ -8,7 +8,7 @@ using Telematics.Server.DataModels;
 
 namespace Telematics.Server.Controllers
 {
-    public class ValuesController : ApiController
+    public class GeoApiController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
