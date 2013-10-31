@@ -27,15 +27,27 @@ namespace Telematics.Server.Controllers
         {
             var context = new geoEntities();
 
+
+            //var user = context.Users.Where(x => x.ID == geoData.PointTable.UserID);
+            
+
             foreach (var point in geoData.PointTable.Points)
             {
                 Debug.WriteLine(point.Lat);
                 Debug.WriteLine(point.Lon);
                 Debug.WriteLine(point.Speed);
                 Debug.WriteLine(point.UTCTime);
+
+                context.VehicleSpeeds.Add( 
+                    new VehicleSpeed 
+                    {
+                        Lat = point.Lat, 
+                        Lon = point.Lon,
+                        Speed = point.Speed,
+                        UserID = geoData.PointTable.UserID,
+                        VehicleID = geoData.PointTable.VehicleID 
+                    });    
             }
-
-
 
             context.SaveChanges();
         }
