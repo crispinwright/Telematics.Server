@@ -33,11 +33,6 @@ namespace Telematics.Server.Controllers
 
             foreach (var point in geoData.PointTable.Points)
             {
-                Debug.WriteLine(point.Lat);
-                Debug.WriteLine(point.Lon);
-                Debug.WriteLine(point.Speed);
-                Debug.WriteLine(point.UTCTime);
-
                 context.VehicleSpeeds.Add( 
                     new VehicleSpeed 
                     {

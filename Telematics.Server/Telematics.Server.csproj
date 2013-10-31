@@ -380,7 +380,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57187</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://pmv.local/Telematics.Server/</IISUrl>
+          <IISUrl>http://localhost/Telematics.Server/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

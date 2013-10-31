@@ -18,7 +18,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Get()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            GeoApiController controller = new GeoApiController();
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -34,7 +34,7 @@ namespace Telematics.Server.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            GeoApiController controller = new GeoApiController();
 
             // Act
             string result = controller.Get(5);
@@ -47,7 +47,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Post()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            GeoApiController controller = new GeoApiController();
 
             // Act
             //controller.Post(new Car{EngineSize = 2898,Make = "Toyota"});
@@ -59,7 +59,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Put()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            GeoApiController controller = new GeoApiController();
 
             // Act
             controller.Put(5, "value");
@@ -71,7 +71,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            GeoApiController controller = new GeoApiController();
 
             // Act
             controller.Delete(5);

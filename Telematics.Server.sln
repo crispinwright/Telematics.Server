@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telematics.Server", "Telematics.Server\Telematics.Server.csproj", "{53D53A03-8891-4938-8B14-6B8505C513C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telematics.Server.Tests", "Telematics.Server.Tests\Telematics.Server.Tests.csproj", "{A7CC2B16-A90D-4FCE-9DDF-BF35099D425F}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "geoDb", "geoDb\geoDb.sqlproj", "{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +19,6 @@ Global
 		{A7CC2B16-A90D-4FCE-9DDF-BF35099D425F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7CC2B16-A90D-4FCE-9DDF-BF35099D425F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7CC2B16-A90D-4FCE-9DDF-BF35099D425F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C5FCA71-0F4A-425B-88EF-C2DADF5C435F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
