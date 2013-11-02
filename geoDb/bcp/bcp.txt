@@ -1,0 +1,4 @@
+bcp geo.dbo.ROADS out "c:\ROADS.txt" -T -c -S CRISPINPAD\SQLEXPRESS
+
+
+bcp geoData.dbo.ROADS in "c:\ROADS.txt" -c -U geouser@a5jvgqurpe -S tcp:a5jvgqurpe.database.windows.net -P PASS GOES HERE

@@ -7,23 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telematics.Server.DataModels
+namespace Telematics.Server.Data.DataModels
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UserVehicle
+    public partial class VehicleSpeed
     {
-        public UserVehicle()
-        {
-            this.VehicleSpeeds = new HashSet<VehicleSpeed>();
-        }
-    
         public int ID { get; set; }
         public int UserID { get; set; }
-        public string Name { get; set; }
+        public int VehicleID { get; set; }
+        public Nullable<decimal> Lat { get; set; }
+        public Nullable<decimal> Lon { get; set; }
+        public Nullable<decimal> Speed { get; set; }
+        public byte[] EventTime { get; set; }
     
         public virtual User User { get; set; }
-        public virtual ICollection<VehicleSpeed> VehicleSpeeds { get; set; }
+        public virtual UserVehicle UserVehicle { get; set; }
     }
 }

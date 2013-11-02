@@ -8,17 +8,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Telematics.Server;
 using Telematics.Server.Controllers;
 using Telematics.Server.Models;
+using Telematics.Server.ServiceLayer;
 
 namespace Telematics.Server.Tests.Controllers
 {
     [TestClass]
     public class ValuesControllerTest
     {
+        private IGeoService _geoService;
         [TestMethod]
         public void Get()
         {
             // Arrange
-            GeoApiController controller = new GeoApiController();
+            GeoController controller = new GeoController(_geoService);
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -34,7 +36,7 @@ namespace Telematics.Server.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            GeoApiController controller = new GeoApiController();
+            GeoController controller = new GeoController(_geoService);
 
             // Act
             string result = controller.Get(5);
@@ -47,7 +49,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Post()
         {
             // Arrange
-            GeoApiController controller = new GeoApiController();
+            GeoController controller = new GeoController(_geoService);
 
             // Act
             //controller.Post(new Car{EngineSize = 2898,Make = "Toyota"});
@@ -59,7 +61,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Put()
         {
             // Arrange
-            GeoApiController controller = new GeoApiController();
+            GeoController controller = new GeoController(_geoService);
 
             // Act
             controller.Put(5, "value");
@@ -71,7 +73,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            GeoApiController controller = new GeoApiController();
+            GeoController controller = new GeoController(_geoService);
 
             // Act
             controller.Delete(5);

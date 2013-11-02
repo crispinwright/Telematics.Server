@@ -2,9 +2,9 @@
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[UserID] [int] NOT NULL,
 	[VehicleID] [int] NOT NULL,
-	[Lat] [decimal](18, 0) NOT NULL,
-	[Lon] [decimal](18, 0) NOT NULL,
-	[Speed] [decimal](18, 0) NOT NULL,
+	[Lat] [decimal](18, 9) NOT NULL,
+	[Lon] [decimal](18, 9) NOT NULL,
+	[Speed] [decimal](18, 9) NOT NULL,
 	[EventTime] [timestamp] NULL,
  CONSTRAINT [PK_VehicleSpeed] PRIMARY KEY CLUSTERED 
 (

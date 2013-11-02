@@ -17,9 +17,6 @@ namespace Telematics.Server
     public class WebApiApplication : System.Web.HttpApplication
     {
 
-       // private IKernel _kernel;
-
-
         protected void Application_Start()
         {
            // _kernel = CreateKernel();
@@ -33,14 +30,5 @@ namespace Telematics.Server
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-
-        //protected IKernel CreateKernel()
-        //{
-        //    var f = new FileInfo(this.Server.MapPath("log4net.config"));
-        //    log4net.Config.XmlConfigurator.ConfigureAndWatch(f);
-
-        //    //KernelContainer.Kernel = ServiceLocator.Initialize(new StandardKernel(new ServiceModule(), new ContentModule()));
-        //    return new StandardKernel();
-        //}
     }
 }

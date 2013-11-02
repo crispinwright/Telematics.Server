@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telematics.Server.DataModels
+namespace Telematics.Server.Data.DataModels
 {
     using System;
     using System.Collections.Generic;

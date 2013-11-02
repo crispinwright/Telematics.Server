@@ -1,0 +1,2 @@
+﻿Connection String for azure
+Server=tcp:a5jvgqurpe.database.windows.net,1433;Database=geoData;User ID=geouser@a5jvgqurpe;Password={your_password_here};Trusted_Connection=False;Encrypt=True;Connection Timeout=30;
