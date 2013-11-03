@@ -1,4 +1,7 @@
+using System.IO;
 using System.Web.Http;
+using log4net.Repository.Hierarchy;
+using Ninject.Extensions.Logging;
 using Telematics.Server.NinjectUtils;
 using Telematics.Server.ServiceLayer;
 using WebApplication2.App_Start;
@@ -45,6 +48,9 @@ namespace Telematics.Server.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
+            var f = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config");
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(f);
+
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();

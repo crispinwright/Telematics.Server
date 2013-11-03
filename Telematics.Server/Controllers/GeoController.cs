@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Web.Http;
+using Ninject.Extensions.Logging;
+using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
 
@@ -14,9 +16,11 @@ namespace Telematics.Server.Controllers
 
 
         private readonly IGeoService _geoService;
+        private readonly ILogger _logger;
 
-        public GeoController(IGeoService geoService)
+        public GeoController(IGeoService geoService, ILogger logger)
         {
+            _logger = logger;
             _geoService = geoService;
         }
 
@@ -40,8 +44,18 @@ namespace Telematics.Server.Controllers
         // POST api/values
         public void Post([FromBody]GEOMain geoData)
         {
+            try
+            {
+                _logger.Info(() => "About to Post" + geoData.ToString(),WindowsEventID.GenericTelematicsEvent);
+                _geoService.AddGeoUserPoints(geoData);
 
-            _geoService.AddGeoUserPoints(geoData);
+            }
+            catch (Exception e)
+            {
+                _logger.Info(() => "Could not load configuration file: \r\nReason: " + e.Message, WindowsEventID.TelematicsConfiguration);
+
+                throw;
+            }
 
         }
 
