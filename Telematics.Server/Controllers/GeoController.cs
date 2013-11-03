@@ -43,7 +43,7 @@ namespace Telematics.Server.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]dynamic geoData)
+        public void Post([FromBody]Telematics.Server.Json.GEOMain geoData)
         {
             try
             {

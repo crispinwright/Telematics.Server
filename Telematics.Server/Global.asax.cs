@@ -21,15 +21,19 @@ namespace Telematics.Server
         {
            // _kernel = CreateKernel();
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            
             json.UseDataContractJsonSerializer = true;
-            //xml.UseXmlSerializer = true;
+            xml.UseXmlSerializer = true;
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
+
         }
 
     }
