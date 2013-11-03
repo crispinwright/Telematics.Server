@@ -1,4 +1,5 @@
 using System.Web.Http;
+using Telematics.Server.NinjectUtils;
 using Telematics.Server.ServiceLayer;
 using WebApplication2.App_Start;
 
@@ -27,6 +28,7 @@ namespace Telematics.Server.App_Start
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
+            Kernel.Instance = bootstrapper.Kernel;
         }
         
         /// <summary>

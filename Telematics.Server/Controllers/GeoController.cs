@@ -20,6 +20,10 @@ namespace Telematics.Server.Controllers
             _geoService = geoService;
         }
 
+        public GeoController()
+        {
+            
+        }
 
         // GET api/values
         public IEnumerable<string> Get()

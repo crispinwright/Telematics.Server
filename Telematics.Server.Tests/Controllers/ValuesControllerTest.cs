@@ -5,9 +5,12 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
+using Ninject.Web.Common;
 using Telematics.Server;
 using Telematics.Server.Controllers;
 using Telematics.Server.Models;
+using Telematics.Server.NinjectUtils;
 using Telematics.Server.ServiceLayer;
 
 namespace Telematics.Server.Tests.Controllers
@@ -16,6 +19,8 @@ namespace Telematics.Server.Tests.Controllers
     public class ValuesControllerTest
     {
         private IGeoService _geoService;
+
+
         [TestMethod]
         public void Get()
         {

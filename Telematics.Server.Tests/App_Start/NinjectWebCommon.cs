@@ -1,3 +1,7 @@
+using System.Web.Http;
+using Telematics.Server.NinjectUtils;
+using Telematics.Server.ServiceLayer;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Telematics.Server.Tests.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Telematics.Server.Tests.App_Start.NinjectWebCommon), "Stop")]
 
@@ -23,6 +27,7 @@ namespace Telematics.Server.Tests.App_Start
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
+            Kernel.Instance = bootstrapper.Kernel;
         }
         
         /// <summary>
@@ -44,6 +49,10 @@ namespace Telematics.Server.Tests.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             
             RegisterServices(kernel);
+
+            // Install our Ninject-based IDependencyResolver into the Web API config
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
             return kernel;
         }
 
@@ -53,6 +62,8 @@ namespace Telematics.Server.Tests.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+
+            kernel.Bind<IGeoService>().To<GeoService>();
+        }           
     }
 }
