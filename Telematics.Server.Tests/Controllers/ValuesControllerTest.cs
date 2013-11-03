@@ -20,7 +20,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Get()
         {
             // Arrange
-            GeoController controller = new GeoController(_geoService);
+            GeoController controller = new GeoController();
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -36,7 +36,7 @@ namespace Telematics.Server.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            GeoController controller = new GeoController(_geoService);
+            GeoController controller = new GeoController();
 
             // Act
             string result = controller.Get(5);
@@ -49,7 +49,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Post()
         {
             // Arrange
-            GeoController controller = new GeoController(_geoService);
+            GeoController controller = new GeoController();
 
             // Act
             //controller.Post(new Car{EngineSize = 2898,Make = "Toyota"});
@@ -61,7 +61,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Put()
         {
             // Arrange
-            GeoController controller = new GeoController(_geoService);
+            GeoController controller = new GeoController();
 
             // Act
             controller.Put(5, "value");
@@ -73,7 +73,7 @@ namespace Telematics.Server.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            GeoController controller = new GeoController(_geoService);
+            GeoController controller = new GeoController();
 
             // Act
             controller.Delete(5);

@@ -12,7 +12,13 @@ namespace Telematics.Server.Controllers
     public class GeoController : ApiController
     {
 
-        private readonly IGeoService _geoService = new GeoService();
+
+        private readonly IGeoService _geoService;
+
+        public GeoController(IGeoService geoService)
+        {
+            _geoService = geoService;
+        }
 
 
         // GET api/values
