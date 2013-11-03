@@ -8,6 +8,7 @@ using Ninject.Extensions.Logging;
 using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
+using Telematics.Server.Json;
 
 namespace Telematics.Server.Controllers
 {
@@ -42,12 +43,14 @@ namespace Telematics.Server.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]GEOMain geoData)
+        public void Post([FromBody]dynamic geoData)
         {
             try
             {
+
+
                 _logger.Info(() => "About to Post" + geoData.ToString(),WindowsEventID.GenericTelematicsEvent);
-                _geoService.AddGeoUserPoints(geoData);
+                //_geoService.AddGeoUserPoints(geoData);
 
             }
             catch (Exception e)

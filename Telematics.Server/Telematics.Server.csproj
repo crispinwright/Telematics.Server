@@ -203,8 +203,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Json\JsonGeoMain.cs" />
     <Compile Include="Logging\ILoggerExtensions.cs" />
-    <Compile Include="Models\Car.cs" />
     <Compile Include="Models\RecordsAdded.cs" />
     <Compile Include="NinjectUtils\ILoggerExtensions.cs" />
     <Compile Include="NinjectUtils\Kernel.cs" />
@@ -331,6 +331,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Xml\generatecode.cmd" />
+    <Content Include="Json\geoTelematics.json" />
     <None Include="Xml\geoTelematics.xsd">
       <SubType>Designer</SubType>
     </None>

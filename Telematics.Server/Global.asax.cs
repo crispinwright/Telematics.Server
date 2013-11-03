@@ -20,8 +20,10 @@ namespace Telematics.Server
         protected void Application_Start()
         {
            // _kernel = CreateKernel();
-            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
-            xml.UseXmlSerializer = true;
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            //var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            json.UseDataContractJsonSerializer = true;
+            //xml.UseXmlSerializer = true;
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
