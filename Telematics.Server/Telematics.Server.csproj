@@ -203,7 +203,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Json\JsonGeoMain.cs" />
     <Compile Include="Logging\ILoggerExtensions.cs" />
     <Compile Include="Models\RecordsAdded.cs" />
     <Compile Include="NinjectUtils\ILoggerExtensions.cs" />

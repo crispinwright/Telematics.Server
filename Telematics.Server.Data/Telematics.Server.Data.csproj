@@ -85,6 +85,7 @@
       <DependentUpon>geo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\geoTelematics.cs" />
+    <Compile Include="Models\JsonGeoMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

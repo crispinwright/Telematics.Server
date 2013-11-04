@@ -9,7 +9,7 @@ using Ninject.Extensions.Logging;
 using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
-using Telematics.Server.Json;
+using Telematics.Server.Data.Json;
 
 namespace Telematics.Server.Controllers
 {
@@ -45,21 +45,17 @@ namespace Telematics.Server.Controllers
         
 
         // POST api/values
-       public void Post([FromBody]Json.GEOMain geoData)
-        //public void Post(dynamic request)
+       public void Post([FromBody]Telematics.Server.Data.Json.GEOMain geoData)
         {
-            //[FromBody]Json.GEOMain geoData
             try
             {
-                //Json.GEOMain geoData = new Json.GEOMain();
-                //var content = request.Content;
-                //string jsonContent = content.ReadAsStringAsync().Result;
-
                 if (geoData.PointTable == null)
                     _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
                 else
+                {
                     _logger.Info(() => "About to Post points", WindowsEventID.GenericTelematicsEvent);
-                //_geoService.AddGeoUserPoints(geoData);
+                    _geoService.AddGeoUserPoints(geoData);
+                }
 
             }
             catch (Exception e)

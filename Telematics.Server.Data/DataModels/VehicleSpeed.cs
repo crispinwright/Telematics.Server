@@ -17,8 +17,8 @@ namespace Telematics.Server.Data.DataModels
         public int ID { get; set; }
         public int UserID { get; set; }
         public int VehicleID { get; set; }
-        public Nullable<decimal> Lat { get; set; }
-        public Nullable<decimal> Lon { get; set; }
+        public Nullable<double> Lat { get; set; }
+        public Nullable<double> Lon { get; set; }
         public Nullable<decimal> Speed { get; set; }
         public byte[] EventTime { get; set; }
     

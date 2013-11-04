@@ -5,13 +5,14 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telematics.Server.Data.DataModels;
+using Telematics.Server.Data.Json;
 
 namespace Telematics.Server.ServiceLayer
 {
     public class GeoService : IGeoService
     {
 
-        public void AddGeoUserPoints(GEOMain geoData)
+        public void AddGeoUserPoints(Telematics.Server.Data.Json.GEOMain geoData)
         {
             var context = new geoEntities();
             //var user = context.Users.Where(x => x.ID == geoData.PointTable.UserID);
