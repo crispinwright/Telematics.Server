@@ -42,14 +42,19 @@ namespace Telematics.Server.Controllers
         {
             return "value";
         }
+        
 
         // POST api/values
-        public void Post(HttpRequestMessage request)
+        [HttpPost]
+        void Post([FromBody]Json.GEOMain geoData)
         {
             //[FromBody]Json.GEOMain geoData
             try
             {
-                //Json.GEOMain  geoData = 
+                //Json.GEOMain geoData = new Json.GEOMain();
+                //var content = request.Content;
+                //string jsonContent = content.ReadAsStringAsync().Result;
+
                 if (geoData.PointTable == null)
                     _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
                 else

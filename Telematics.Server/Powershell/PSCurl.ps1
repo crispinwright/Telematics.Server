@@ -1,5 +1,5 @@
 ﻿# WebUtility functions
-#http://localhost/api/values F:\Telematics.Server\Telematics.Server\Xml\geoTelematicsSample.xml F:\Telematics.Server\Telematics.Server\Xml\response.xml
+#http://localhost/Telematics.Server/api/geo C:\Users\si553904.LDSTATDV\Documents\GitHub\Telematics.Server\Telematics.Server\Json\geoTelematics.json out.txt
 function PostXmlToUrl($uploadUrl, $xmlDocToPost, $saveFileName)
 {
 	$client = new-object System.Net.WebClient;
