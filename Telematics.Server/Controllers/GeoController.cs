@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Reactive.Linq;
 using System.Web.Http;
 using Ninject.Extensions.Logging;
@@ -43,13 +44,16 @@ namespace Telematics.Server.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]Telematics.Server.Json.GEOMain geoData)
+        public void Post(HttpRequestMessage request)
         {
+            //[FromBody]Json.GEOMain geoData
             try
             {
-
-
-                _logger.Info(() => "About to Post" + geoData.ToString(),WindowsEventID.GenericTelematicsEvent);
+                //Json.GEOMain  geoData = 
+                if (geoData.PointTable == null)
+                    _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
+                else
+                    _logger.Info(() => "About to Post points", WindowsEventID.GenericTelematicsEvent);
                 //_geoService.AddGeoUserPoints(geoData);
 
             }
