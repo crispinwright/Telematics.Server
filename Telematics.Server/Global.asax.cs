@@ -20,11 +20,11 @@ namespace Telematics.Server
         protected void Application_Start()
         {
            // _kernel = CreateKernel();
-            //ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
-            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
+            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
             
-            json.UseDataContractJsonSerializer = true;
+            //json.UseDataContractJsonSerializer = true;
             
             xml.UseXmlSerializer = true;
             AreaRegistration.RegisterAllAreas();
