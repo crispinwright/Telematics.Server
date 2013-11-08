@@ -13,22 +13,12 @@ namespace Telematics.Server.Data.Json
         public DateTime UTCTime { get; set; }
     }
 
-    public class PointTable
+    public class GeoMain
     {
+        public DateTime sendTime { get; set; }
         public int UserID { get; set; }
         public string DeviceID { get; set; }
         public int VehicleID { get; set; }
         public List<Point> Points { get; set; }
-    }
-
-    public class GEOMain
-    {
-        public DateTime sendTime { get; set; }
-        public PointTable PointTable { get; set; }
-    }
-
-    public class RootObject
-    {
-        public GEOMain GEOMain { get; set; }
     }
 }

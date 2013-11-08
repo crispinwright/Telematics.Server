@@ -1,9 +1,8 @@
 ﻿{
     "sendTime": "2013-10-27T18:16:26.140625Z",
-    "PointTable": {
-      "UserID": 1,
-      "DeviceID": "MATTE",
-      "VehicleID": 1,
+	"UserID": 1,
+    "DeviceID": "MATTE",
+    "VehicleID": 1,
       "Points": [
         {
           "Lon": 81.13,
@@ -30,6 +29,4 @@
           "UTCTime": "2013-10-27T18:16:26.140625Z"
         }
       ]
-    }
   }
-}

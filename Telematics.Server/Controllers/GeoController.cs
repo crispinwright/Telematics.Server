@@ -45,11 +45,11 @@ namespace Telematics.Server.Controllers
         
 
         // POST api/values
-       public void Post([FromBody]Telematics.Server.Data.Json.GEOMain geoData)
+       public void Post([FromBody]GeoMain geoData)
         {
             try
             {
-                if (geoData.PointTable == null)
+                if (geoData == null)
                     _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
                 else
                 {

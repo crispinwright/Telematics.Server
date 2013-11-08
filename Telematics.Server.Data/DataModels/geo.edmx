@@ -27,9 +27,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="VehicleID" Type="int" Nullable="false" />
-          <Property Name="Lat" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="Lon" Type="decimal" Precision="18" Scale="9" />
-          <Property Name="Speed" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Lat" Type="float" />
+          <Property Name="Lon" Type="float" />
+          <Property Name="Speed" Type="bigint" />
           <Property Name="EventTime" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
@@ -115,9 +115,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="VehicleID" Type="Int32" Nullable="false" />
-          <Property Name="Lat" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Lon" Type="Decimal" Precision="18" Scale="9" />
-          <Property Name="Speed" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lon" Type="Double" />
+          <Property Name="Speed" Type="Int64" />
           <Property Name="EventTime" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="User" Relationship="Self.FK_VehicleSpeed_User" FromRole="VehicleSpeed" ToRole="User" />
           <NavigationProperty Name="UserVehicle" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="VehicleSpeed" ToRole="UserVehicle" />

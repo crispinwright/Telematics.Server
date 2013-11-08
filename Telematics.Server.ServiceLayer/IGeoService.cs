@@ -4,6 +4,6 @@ namespace Telematics.Server.ServiceLayer
 {
     public interface IGeoService
     {
-        void AddGeoUserPoints(Telematics.Server.Data.Json.GEOMain geoData);
+        void AddGeoUserPoints(Telematics.Server.Data.Json.GeoMain geoData);
     }
 }
