@@ -40,6 +40,13 @@ namespace Telematics.Server.Controllers
         // GET api/values/5
         public string Get(int id)
         {
+            Telematics.Server.Hubs.GeoHubContext.Instance().Send(new
+            {
+                CarPlate = "dsa",
+                Lat = -36.8730m,
+                Long = 174.7550m,
+                Time = DateTime.Now
+            });
             return "value";
         }
         
@@ -96,5 +103,6 @@ namespace Telematics.Server.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }
