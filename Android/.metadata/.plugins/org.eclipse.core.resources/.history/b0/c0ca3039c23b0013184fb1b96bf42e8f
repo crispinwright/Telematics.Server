@@ -1,0 +1,72 @@
+package com.example.state_payg;
+
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.IBinder;
+
+public class GPSTracking extends Service implements LocationListener{
+
+	protected LocationManager locationManager;
+	
+	private Location location;
+	private double _latitude;
+	private double _longitude;
+	private boolean _isGPSEnabled 			= false;
+	
+	private final Context _context;
+	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters 
+	private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+	
+	public GPSTracking(Context context){
+		_context = context;
+	}
+	
+	public Location retrieveLocation(){
+		locationManager = (LocationManager)_context.getSystemService(LOCATION_SERVICE);
+		_isGPSEnabled   = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
+		
+		if(_isGPSEnabled){
+			Location lastLocation 	= locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+			_latitude 				= lastLocation.getLatitude();
+			_longitude 				= lastLocation.getLongitude();
+		}
+	}
+	
+	@Override
+ 	public void onLocationChanged(Location arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+}
