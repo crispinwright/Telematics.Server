@@ -37,16 +37,44 @@ namespace Telematics.Server.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        private static List<Tuple<decimal,decimal>> datasource = new List<Tuple<decimal, decimal>>()
+        {
+            //{new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
+            {new Tuple<decimal, decimal>(-36.872543m,174.703705m)},
+            {new Tuple<decimal, decimal>(-36.872116m,174.699829m)},
+            {new Tuple<decimal, decimal>(-36.871994m,174.699036m)},
+            {new Tuple<decimal, decimal>(-36.871964m,174.698746m)}
+        };
+
+        private static int pos = 0;
+
+
         // GET api/values/5
         public string Get(int id)
         {
-            Telematics.Server.Hubs.GeoHubContext.Instance().Send(new
+            if (pos < datasource.Count)
             {
-                CarPlate = "dsa",
-                Lat = -36.8730m,
-                Long = 174.7550m,
-                Time = DateTime.Now
-            });
+                Hubs.GeoHubContext.Instance().Send(new
+                {
+                    CarPlate = "dsa",
+                    Lat = datasource[pos].Item1,
+                    Long = datasource[pos].Item2,
+                    Time = DateTime.Now
+                });
+                pos++;
+                
+            }
+            else
+            {
+                pos = 0;
+                Hubs.GeoHubContext.Instance().Send(new
+                {
+                    CarPlate = "dsa",
+                    Lat = datasource[pos].Item1,
+                    Long = datasource[pos].Item2,
+                    Time = DateTime.Now
+                });
+            }
             return "value";
         }
         
