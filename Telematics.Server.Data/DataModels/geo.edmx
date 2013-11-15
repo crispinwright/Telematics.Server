@@ -32,6 +32,7 @@
           <Property Name="Speed" Type="float" />
           <Property Name="EventTime" Type="timestamp" StoreGeneratedPattern="Computed" />
           <Property Name="UTCTime" Type="datetime" />
+          <Property Name="DeviceID" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -123,6 +124,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK_VehicleSpeed_User" FromRole="VehicleSpeed" ToRole="User" />
           <NavigationProperty Name="UserVehicle" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="VehicleSpeed" ToRole="UserVehicle" />
           <Property Name="UTCTime" Type="DateTime" Precision="3" />
+          <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -203,6 +205,7 @@
           <EntitySetMapping Name="VehicleSpeeds">
             <EntityTypeMapping TypeName="geoModel.VehicleSpeed">
               <MappingFragment StoreEntitySet="VehicleSpeed">
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
                 <ScalarProperty Name="UTCTime" ColumnName="UTCTime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />

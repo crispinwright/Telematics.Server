@@ -25,8 +25,11 @@ namespace Telematics.Server.ServiceLayer
                         Speed = i.Speed,
                         UserID = geoData.UserID,
                         VehicleID = geoData.VehicleID,
-                        UTCTime = i.UTCTime
-                    }));
+                        UTCTime = i.UTCTime,
+                        DeviceID = geoData.DeviceID
+                    })
+                    
+                    );
             return context.SaveChanges();
         }
     }
