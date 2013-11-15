@@ -24,7 +24,8 @@ namespace Telematics.Server.ServiceLayer
                         Lon = i.Lon,
                         Speed = i.Speed,
                         UserID = geoData.UserID,
-                        VehicleID = geoData.VehicleID
+                        VehicleID = geoData.VehicleID,
+                        UTCTime = i.UTCTime
                     }));
             return context.SaveChanges();
         }

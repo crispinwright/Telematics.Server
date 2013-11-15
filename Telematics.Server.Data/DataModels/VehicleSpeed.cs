@@ -21,6 +21,7 @@ namespace Telematics.Server.Data.DataModels
         public Nullable<double> Lon { get; set; }
         public Nullable<long> Speed { get; set; }
         public byte[] EventTime { get; set; }
+        public Nullable<System.DateTime> UTCTime { get; set; }
     
         public virtual User User { get; set; }
         public virtual UserVehicle UserVehicle { get; set; }
