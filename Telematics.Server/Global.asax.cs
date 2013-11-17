@@ -22,11 +22,11 @@ namespace Telematics.Server
            // _kernel = CreateKernel();
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
             //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            //var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
             
             //json.UseDataContractJsonSerializer = true;
             
-            xml.UseXmlSerializer = true;
+            //xml.UseXmlSerializer = true;
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">State-PAYG</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="myFirstString">A string value</string>
+    <string name="findLocation">Find location</string>
+    <string name="currentLocation">Current Location</string>
+
+</resources>

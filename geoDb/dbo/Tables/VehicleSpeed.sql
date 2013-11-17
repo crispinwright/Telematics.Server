@@ -1,11 +1,15 @@
 ﻿CREATE TABLE [dbo].[VehicleSpeed](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[UserID] [int] NOT NULL,
+	[DeviceID] [VARCHAR] NULL,
 	[VehicleID] [int] NOT NULL,
-	[Lat] [decimal](18, 9) NOT NULL,
-	[Lon] [decimal](18, 9) NOT NULL,
-	[Speed] [decimal](18, 9) NOT NULL,
+	[Lat] [float] NULL,
+	[Lon] [float] NULL,
+	[Speed] [float] NULL,
+	[SpeedLimit] [float] NULL,
+	[Distance] [float] NULL,
 	[EventTime] [timestamp] NULL,
+	[UTCTime] [datetime] NULL,
  CONSTRAINT [PK_VehicleSpeed] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC

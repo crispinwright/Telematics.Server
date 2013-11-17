@@ -12,7 +12,7 @@ namespace Telematics.Server.ServiceLayer
     public class GeoService : IGeoService
     {
 
-        public void AddGeoUserPoints(GeoMain geoData)
+        public int AddGeoUserPoints(GeoMain geoData)
         {
             var context = new geoEntities();
             //var user = context.Users.Where(x => x.ID == geoData.PointTable.UserID);
@@ -24,9 +24,13 @@ namespace Telematics.Server.ServiceLayer
                         Lon = i.Lon,
                         Speed = i.Speed,
                         UserID = geoData.UserID,
-                        VehicleID = geoData.VehicleID
-                    }));
-            context.SaveChanges();
+                        VehicleID = geoData.VehicleID,
+                        UTCTime = i.UTCTime,
+                        DeviceID = geoData.DeviceID
+                    })
+                    
+                    );
+            return context.SaveChanges();
         }
     }
 }

@@ -1,0 +1,54 @@
+package com.example.state_payg;
+
+import java.util.Date;
+
+import android.app.Activity;
+import android.location.Location;
+import android.os.Bundle;
+import android.view.Menu;
+import android.widget.TextView;
+
+import com.example.state_payg.Interfaces.GPSTrackingListener;
+
+public class MainActivity extends Activity implements GPSTrackingListener{
+	
+	private GPSTracking _gpsTracking;
+	private ConnectionTask _connectionTask;
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);  
+        
+        if(_connectionTask == null) {
+        	_connectionTask = new ConnectionTask();  
+        }
+        
+        if(_gpsTracking == null) {
+        	_gpsTracking 	= new GPSTracking(this);
+        	_gpsTracking.addGPSTrackingListener(this);       
+        }   
+        
+        _connectionTask.execute(new Location[]{_gpsTracking.getLastLocation()});
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+	@Override
+	public void onChangeLocation(Location location) {	
+		
+		TextView textValue 		= (TextView)findViewById(R.id.currentLocationText);  		
+    	textValue.setText("Your Last Location is - \nLat: " 
+    							+ location.getLatitude() + "\nLong: " 
+    							+ location.getLongitude() + ".\n" 
+    							+ "Speed of "
+    							+ location.getSpeed() +	"\nAt " 
+    							+ new Date().toString()
+    							); 		
+	} 
+}
