@@ -9,11 +9,8 @@ using Ninject.Extensions.Logging;
 using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
-<<<<<<< HEAD
 using Telematics.Server.Data.Json;
-=======
-using Telematics.Server.Data.Json;
->>>>>>> 30920a967deedacc0c8cab96378f80ca4d74b8b6
+
 using Telematics.Server.Models;
 
 namespace Telematics.Server.Controllers
@@ -88,7 +85,6 @@ namespace Telematics.Server.Controllers
        public HttpResponseMessage Post([FromBody]GeoMain geoData)
         {
             try
-<<<<<<< HEAD
             {
                 if (geoData == null)
                 {
@@ -106,25 +102,7 @@ namespace Telematics.Server.Controllers
                     var validResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = recordsAdded });
 
                     return validResponse;
-=======
-            {
-                if (geoData == null)
-                {
-                    _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
 
-                    var zeroResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = 0 });
-                    return zeroResponse;
-                }
-                else
-                {
-                    _logger.Info(() => "About to Post points", WindowsEventID.GenericTelematicsEvent);
-
-                    var recordsAdded = _geoService.AddGeoUserPoints(geoData);
-
-                    var validResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = recordsAdded });
-
-                    return validResponse;
->>>>>>> 30920a967deedacc0c8cab96378f80ca4d74b8b6
                 }
 
             }
