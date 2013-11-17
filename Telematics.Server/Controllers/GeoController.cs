@@ -10,6 +10,7 @@ using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
 using Telematics.Server.Data.Json;
+using Telematics.Server.Models;
 
 namespace Telematics.Server.Controllers
 {
@@ -80,23 +81,32 @@ namespace Telematics.Server.Controllers
         
 
         // POST api/values
-       public void Post([FromBody]GeoMain geoData)
+       public HttpResponseMessage Post([FromBody]GeoMain geoData)
         {
             try
             {
                 if (geoData == null)
+                {
                     _logger.Info(() => "GeoData is null", WindowsEventID.GenericTelematicsEvent);
+
+                    var zeroResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = 0 });
+                    return zeroResponse;
+                }
                 else
                 {
                     _logger.Info(() => "About to Post points", WindowsEventID.GenericTelematicsEvent);
-                    _geoService.AddGeoUserPoints(geoData);
+
+                    var recordsAdded = _geoService.AddGeoUserPoints(geoData);
+
+                    var validResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = recordsAdded });
+
+                    return validResponse;
                 }
 
             }
             catch (Exception e)
             {
                 _logger.Info(() => "Could not load configuration file: \r\nReason: " + e.Message, WindowsEventID.TelematicsConfiguration);
-
                 throw;
             }
 
