@@ -59,7 +59,8 @@ namespace Telematics.Server.App_Start
 
             // Install our Ninject-based IDependencyResolver into the Web API config
             GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
-
+            //now for MVC
+            System.Web.Mvc.DependencyResolver.SetResolver(new NinjectMvcDependencyResolver(kernel));
             return kernel;
         }
 
