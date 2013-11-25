@@ -20,6 +20,13 @@ namespace Telematics.Server.Data.Json
         public double Lat { get; set; }
         public int Speed { get; set; }
         public DateTime UTCTime { get; set; }
+		public string Route { get; set; }
     }
+
+	public class User
+	{
+		public int UserID { get; set; }
+		string Name { get; set; }
+	}
 
 }

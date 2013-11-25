@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Reactive.Linq;
+using System.Web.Helpers;
 using System.Web.Http;
 using Ninject.Extensions.Logging;
 using Telematics.Server.Const;
@@ -12,6 +13,7 @@ using Telematics.Server.ServiceLayer;
 using Telematics.Server.Data.Json;
 
 using Telematics.Server.Models;
+using User = Telematics.Server.Data.DataModels.User;
 
 namespace Telematics.Server.Controllers
 {
@@ -56,13 +58,22 @@ namespace Telematics.Server.Controllers
         {
             if (pos < datasource.Count)
             {
-                Hubs.GeoHubContext.Instance().Send(new
-                {
-                    CarPlate = "dsa",
-                    Lat = datasource[pos].Item1,
-                    Long = datasource[pos].Item2,
-                    Time = DateTime.Now
-                });
+				GeoMain data = new GeoMain();
+				data.Points = new List<Point>();
+				data.Points.Add(new Point()
+				                {
+									Lat = -36.872543,
+									Lon = 174.703705,
+									Route = _geoService.RetrievePolyLineBetweenPoints(new Point()
+									                                                  {
+										                                                  Lat = -36.872227,Lon= 174.705612
+																					  }, new Point()
+																					  {
+																						  Lat = -36.872543,
+																						  Lon = 174.703705
+																					  })
+				                });
+				Hubs.GeoHubContext.Instance().Send(data);
                 pos++;
                 
             }
@@ -113,6 +124,8 @@ namespace Telematics.Server.Controllers
             }
 
         }
+
+	 
 
         private void addStuff()
         {

@@ -758,6 +758,12 @@ tr.pager td {
 
 
 #map-canvas {
+    float: left;
     height: 800px;
     width: 800px;
+}
+
+#user-select {
+    float: right;
+    width: 200px;
 }
