@@ -72,6 +72,7 @@ namespace Telematics.Server.App_Start
         {
 
             kernel.Bind<IGeoService>().To<GeoService>();
+			kernel.Bind<IUserService>().To<UserService>();
         }        
     }
 }

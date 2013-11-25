@@ -8,14 +8,7 @@ using Telematics.Server.ServiceLayer;
 
 namespace Telematics.Server.Controllers
 {
-	public class RepositoryModule : NinjectModule
-	{
-		public override void Load()
-		{
-			Bind(typeof(IUserService)).To(typeof(UserService));
-		}
-	}
-
+	
     public class HomeController : Controller
     {
 		private readonly IUserService _userService;
@@ -25,7 +18,7 @@ namespace Telematics.Server.Controllers
 		    this._userService = userService;
 	    }
 
-	    public HomeController(): this(new UserService())
+	    public HomeController()
 	    {
 	    }
 
