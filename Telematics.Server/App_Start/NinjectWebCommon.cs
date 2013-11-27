@@ -2,6 +2,7 @@ using System.IO;
 using System.Web.Http;
 using log4net.Repository.Hierarchy;
 using Ninject.Extensions.Logging;
+using Telematics.Server.Controllers;
 using Telematics.Server.NinjectUtils;
 using Telematics.Server.ServiceLayer;
 using WebApplication2.App_Start;
@@ -75,4 +76,5 @@ namespace Telematics.Server.App_Start
 			kernel.Bind<IUserService>().To<UserService>();
         }        
     }
+  
 }

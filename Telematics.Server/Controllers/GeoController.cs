@@ -95,6 +95,8 @@ namespace Telematics.Server.Controllers
         // POST api/values
        public HttpResponseMessage Post([FromBody]GeoMain geoData)
         {
+           var data = Request.Content.ReadAsStringAsync().Result;
+
             try
             {
                 if (geoData == null)

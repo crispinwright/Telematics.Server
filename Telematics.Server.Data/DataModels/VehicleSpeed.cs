@@ -23,6 +23,9 @@ namespace Telematics.Server.Data.DataModels
         public byte[] EventTime { get; set; }
         public Nullable<System.DateTime> UTCTime { get; set; }
         public string DeviceID { get; set; }
+        public Nullable<double> SpeedLimit { get; set; }
+        public Nullable<double> Distance { get; set; }
+        public string Route { get; set; }
     
         public virtual User User { get; set; }
         public virtual UserVehicle UserVehicle { get; set; }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Web.Helpers;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using Ninject.Web.Common;
 using Telematics.Server;
 using Telematics.Server.Controllers;
+using Telematics.Server.Data.Json;
 using Telematics.Server.Models;
 using Telematics.Server.NinjectUtils;
 using Telematics.Server.ServiceLayer;
@@ -55,9 +57,42 @@ namespace Telematics.Server.Tests.Controllers
         {
             // Arrange
             GeoController controller = new GeoController();
+            var data = @"{
+    'sendTime': '2013-11-14T18:16:26.140625Z',
+       'UserID': 6,
+    'DeviceID': 'DOTA',
+    'VehicleID': 2,
+      'Points': [
+        {
+          'Lon': 81.13,
+          'Lat': 175.0405582,
+          'Speed': 130,
+          'UTCTime': '2013-11-14T18:16:26.140625Z'
+        },
+        {
+          'Lon': 81.13,
+          'Lat': 175.0405582,
+          'Speed': 85,
+          'UTCTime': '2013-11-14T18:16:26.140625Z'
+        },
+        {
+         'Lon': 81.13,
+          'Lat': 175.0405582,
+          'Speed': 88,
+          'UTCTime': '2013-11-14T18:16:26.140625Z'
+        },
+        {
+          'Lon': 81.13,
+          'Lat': 175.0405582,
+          'Speed': 92,
+          'UTCTime': '2013-11-14T18:16:26.140625Z'
+        }
+      ]
+  }
 
+";
             // Act
-            //controller.Post(new Car{EngineSize = 2898,Make = "Toyota"});
+            controller.Post(Json.Decode<GeoMain>(data));
 
             // Assert
         }
@@ -69,6 +104,9 @@ namespace Telematics.Server.Tests.Controllers
             GeoController controller = new GeoController();
 
             // Act
+
+           
+
             controller.Put(5, "value");
 
             // Assert
@@ -85,5 +123,7 @@ namespace Telematics.Server.Tests.Controllers
 
             // Assert
         }
+
+        
     }
 }

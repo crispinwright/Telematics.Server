@@ -11,12 +11,7 @@ using User = Telematics.Server.Data.Json.User;
 
 namespace Telematics.Server.ServiceLayer
 {
-	public interface IUserService
-	{
-		IEnumerable<User> GetUsers();
-	}
-
-	public class UserService : IUserService
+    public class UserService : IUserService
 	{
 		public IEnumerable<User> GetUsers()
 		{

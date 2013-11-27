@@ -26,13 +26,16 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DeviceID" Type="varchar" MaxLength="1" />
           <Property Name="VehicleID" Type="int" Nullable="false" />
           <Property Name="Lat" Type="float" />
           <Property Name="Lon" Type="float" />
           <Property Name="Speed" Type="float" />
+          <Property Name="SpeedLimit" Type="float" />
+          <Property Name="Distance" Type="float" />
           <Property Name="EventTime" Type="timestamp" StoreGeneratedPattern="Computed" />
           <Property Name="UTCTime" Type="datetime" />
-          <Property Name="DeviceID" Type="varchar" MaxLength="50" />
+          <Property Name="Route" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -124,7 +127,10 @@
           <NavigationProperty Name="User" Relationship="Self.FK_VehicleSpeed_User" FromRole="VehicleSpeed" ToRole="User" />
           <NavigationProperty Name="UserVehicle" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="VehicleSpeed" ToRole="UserVehicle" />
           <Property Name="UTCTime" Type="DateTime" Precision="3" />
-          <Property Name="DeviceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceID" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SpeedLimit" Type="Double" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="Route" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -205,6 +211,9 @@
           <EntitySetMapping Name="VehicleSpeeds">
             <EntityTypeMapping TypeName="geoModel.VehicleSpeed">
               <MappingFragment StoreEntitySet="VehicleSpeed">
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SpeedLimit" ColumnName="SpeedLimit" />
                 <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
                 <ScalarProperty Name="UTCTime" ColumnName="UTCTime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
