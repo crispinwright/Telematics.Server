@@ -68,8 +68,6 @@
     <Build Include="dbo\Tables\UserVehicle.sql" />
     <Build Include="dbo\Tables\VehicleSpeed.sql" />
     <Build Include="dbo\Tables\Test.sql" />
-    <Build Include="Security\CRISPINPAD_TelematicsAppPool.sql" />
-    <Build Include="Security\TelematicsUser.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
   <ItemGroup>

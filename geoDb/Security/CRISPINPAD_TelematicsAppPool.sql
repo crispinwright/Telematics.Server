@@ -1,2 +1,0 @@
-﻿/****** Object:  Login [CRISPINPAD\TelematicsAppPool]    Script Date: 27/10/2013 19:26:29 ******/
-CREATE LOGIN [CRISPINPAD\TelematicsAppPool] FROM WINDOWS WITH DEFAULT_DATABASE=[geo], DEFAULT_LANGUAGE=[us_english]
