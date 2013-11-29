@@ -42,7 +42,7 @@ namespace Telematics.Server.ServiceLayer
 	            var data = res.Result.Content.ReadAsStringAsync().Result;
 	            dynamic x = Json.Decode(data);
 
-                if (x.routes == null || x.routes.Count == null || x.routes.Count == 0)
+                if (x.routes == null || x.routes.Length == null || x.routes.Length == 0)
 	                return null;
 	            return x.routes[0].overview_polyline.points;
 	        }
@@ -104,6 +104,8 @@ namespace Telematics.Server.ServiceLayer
                         Lon = lastPoint.Lon ?? 0
                     });
                 }
+
+                //NOTE: in previous experimentation with google doing something like the below can lead to google rate limiting you, so doing this in a sequential fashion may fix this...
                 var tasks = new List<Task>();
                 for (int i = 1; i < orderedPoints.Count(); i++)
                 {
