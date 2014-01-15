@@ -34,7 +34,7 @@ namespace Telematics.Server.ServiceLayer
 //                    UseCookies = true,
                     UseDefaultCredentials = false,
                     //Credentials = ,
-                    Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
+                    Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","Alex5269")),
                     UseProxy = true,
                 };
                 HttpClient cl = new HttpClient(handler);

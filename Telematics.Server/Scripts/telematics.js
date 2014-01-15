@@ -132,24 +132,36 @@ function initialize() {
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
-    var myLatlng = new google.maps.LatLng(-36.871616, 174.709610);
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: "Hello World!"
-    });
+    //var myLatlng = new google.maps.LatLng(-36.871616, 174.709610);
+//    var marker = new google.maps.Marker({
+//        position: myLatlng,
+//        map: map,
+//        title: "Hello World!"
+//    });
 
     //current = dest;
-    setTimeout(function () {
-        car = new google.maps.Marker({ icon: image, position: origin, animation: google.maps.Animation.DROP, map: map });
-        var geo = new Object();
-        geo.Lat = dest.lat();
-        geo.Long = dest.lng();
-        setTimeout(function () {
-            addGeodataMarker(geo);
-        }, 2000);
-    }, 2000);
+//    setTimeout(function () {
+//        car = new google.maps.Marker({ icon: image, position: origin, animation: google.maps.Animation.DROP, map: map });
+//        var geo = new Object();
+//        geo.Lat = dest.lat();
+//        geo.Long = dest.lng();
+//        setTimeout(function () {
+//            addGeodataMarker(geo);
+//        }, 2000);
+//    }, 2000);
 }
+
+var isInitialized = false;
+var initialize2 = function (dest) {
+    
+    var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
+    
+    car = new google.maps.Marker({ icon: image, position: dest, animation: google.maps.Animation.DROP, map: map });
+    isInitialized = true;
+//    setTimeout(function () {
+//        addGeodataMarker(geo);
+//    }, 2000);
+};
 
 var addGeodataMarker = function (geodata) {
     var myLatlng = new google.maps.LatLng(geodata.Lat, geodata.Long);
@@ -161,12 +173,24 @@ var addGeodataMarker = function (geodata) {
 
 
 var addGeodataMarker2 = function (geoMain) {
-    var geodata = geoMain.Points[0];
-    var myLatlng = new google.maps.LatLng(geodata.Lat, geodata.Lon);
-    createEventPolyline2(geodata.Route);
-    current = myLatlng;
-    map.panTo(current);
-    car.setPosition(current);
+    for (var i = 0; i < geoMain.Points.length; i++) {
+        if (!isInitialized) {
+            initialize2(geoMain.Points[i]);
+            geoMain.Points.splice(0, 1);
+            setTimeout(function () {
+                addGeodataMarker2(geoMain);
+            }, 2000);
+            return;
+        } else {
+            var geodata = geoMain.Points[i];
+            var myLatlng = new google.maps.LatLng(geodata.Lat, geodata.Lon);
+            createEventPolyline2(geodata.Route);
+            current = myLatlng;
+            map.panTo(current);
+            car.setPosition(current);
+        }
+        
+    }
 };
 
 google.maps.event.addDomListener(window, 'load', initialize);
