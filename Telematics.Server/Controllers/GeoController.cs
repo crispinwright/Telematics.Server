@@ -50,7 +50,8 @@ namespace Telematics.Server.Controllers
 
         private static List<Tuple<decimal,decimal>> datasource = new List<Tuple<decimal, decimal>>()
         {
-            //{new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
+            //{new Tuple<decimal, decimal>(-36.871616m, 174.709610m)},
+            {new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
             {new Tuple<decimal, decimal>(-36.872543m,174.703705m)},
             {new Tuple<decimal, decimal>(-36.872116m,174.699829m)},
             {new Tuple<decimal, decimal>(-36.871994m,174.699036m)},
