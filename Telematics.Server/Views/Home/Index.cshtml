@@ -7,7 +7,7 @@
 
     <div id="user-select">
         <h2>Select a user</h2>
-        @Html.DropDownList("users",(((IEnumerable<User>)ViewBag.Users).Select(x=>new SelectListItem(){Text = x.UserID.ToString()})))
+       @* @Html.DropDownList("users",(((IEnumerable<User>)ViewBag.Users).Select(x=>new SelectListItem(){Text = x.UserID.ToString()})))*@
         <select name="device"></select>
     </div>
 </div>  
