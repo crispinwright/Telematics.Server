@@ -1,7 +1,7 @@
 ﻿var map;
 var poly;
 var animatedPolyLine;
-var image = new google.maps.MarkerImage("/Telematics.Server/content/caricon.png", null, null, new google.maps.Point(18, 10));
+var image = new google.maps.MarkerImage(appRoot+"content/caricon.png", null, null, new google.maps.Point(18, 10));
 
 var eventSnapTo = [];
 var service = new google.maps.DirectionsService();
