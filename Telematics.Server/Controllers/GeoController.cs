@@ -38,12 +38,20 @@ namespace Telematics.Server.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
+            GeoMain data = new GeoMain();
+            data.Points = new List<Point>();
+            for (int i = 0; i < datasource.Count-1; i++)
+            {
+                data.Points.Add(CreatePoint((double)datasource[i].Item1, (double)datasource[i].Item2, (double)datasource[i+1].Item1, (double)datasource[i+1].Item2));
+            }
+            Hubs.GeoHubContext.Instance().Send(data);
             return new string[] { "value1", "value2" };
         }
 
         private static List<Tuple<decimal,decimal>> datasource = new List<Tuple<decimal, decimal>>()
         {
-            //{new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
+            //{new Tuple<decimal, decimal>(-36.871616m, 174.709610m)},
+            {new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
             {new Tuple<decimal, decimal>(-36.872543m,174.703705m)},
             {new Tuple<decimal, decimal>(-36.872116m,174.699829m)},
             {new Tuple<decimal, decimal>(-36.871994m,174.699036m)},
@@ -60,19 +68,7 @@ namespace Telematics.Server.Controllers
             {
 				GeoMain data = new GeoMain();
 				data.Points = new List<Point>();
-				data.Points.Add(new Point()
-				                {
-									Lat = -36.872543,
-									Lon = 174.703705,
-									Route = _geoService.RetrievePolyLineBetweenPoints(new Point()
-									                                                  {
-										                                                  Lat = -36.872227,Lon= 174.705612
-																					  }, new Point()
-																					  {
-																						  Lat = -36.872543,
-																						  Lon = 174.703705
-																					  })
-				                });
+				data.Points.Add(CreatePoint(-36.872227, 174.705612, -36.872543, 174.703705));
 				Hubs.GeoHubContext.Instance().Send(data);
                 pos++;
                 
@@ -91,6 +87,23 @@ namespace Telematics.Server.Controllers
             return "value";
         }
         
+        private Point CreatePoint(double fromLat, double fromLon, double toLat, double toLon)
+        {
+            return new Point()
+            {
+                Lat = -36.872543,
+                Lon = toLon,
+                Route = _geoService.RetrievePolyLineBetweenPoints(new Point()
+                {
+                    Lat = fromLat,Lon= fromLon
+                }, new Point()
+                {
+                    Lat = toLat,
+                    Lon = toLon
+                })
+            };
+        }
+
 
         // POST api/values
        public HttpResponseMessage Post([FromBody]GeoMain geoData)
@@ -111,6 +124,9 @@ namespace Telematics.Server.Controllers
                     _logger.Info(() => "About to Post points", WindowsEventID.GenericTelematicsEvent);
 
                     var recordsAdded = _geoService.AddGeoUserPoints(geoData);
+
+                    //at this point we need to push back to signalr
+                    Hubs.GeoHubContext.Instance().Send(geoData);
 
                     var validResponse = Request.CreateResponse<RecordsAdded>(System.Net.HttpStatusCode.OK, new RecordsAdded { Count = recordsAdded });
 
