@@ -13,21 +13,21 @@ namespace Telematics.Server.ServiceLayer
 {
     public class UserService : IUserService
 	{
-		public IEnumerable<User> GetUsers()
-		{
-			using (var context = new geoEntities())
-			{
-				return context.Users.ToJson();
-			}
-		}
+        //public IEnumerable<User> GetUsers()
+        //{
+        //    using (var context = new geoEntities())
+        //    {
+        //        return context.Users.ToJson();
+        //    }
+        //}
 	}
 
 	public static class JsonTransforms
 	{
-		public static IEnumerable<User> ToJson(this DbSet<Data.DataModels.User> databaseUsers)
-		{
-			return databaseUsers.ToArray().Select(x => x.ToJson());
-		}
+        //public static IEnumerable<User> ToJson(this DbSet<Data.DataModels.User> databaseUsers)
+        //{
+        //    //return databaseUsers.ToArray().Select(x => x.ToJson());
+        //}
 
 		public static User ToJson(this Data.DataModels.User databaseUser)
 		{

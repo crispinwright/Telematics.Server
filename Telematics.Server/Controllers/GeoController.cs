@@ -11,9 +11,9 @@ using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
 using Telematics.Server.Data.Json;
-
 using Telematics.Server.Models;
 using User = Telematics.Server.Data.DataModels.User;
+
 
 namespace Telematics.Server.Controllers
 {
