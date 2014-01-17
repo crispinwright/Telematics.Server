@@ -73,6 +73,7 @@ function createEventPolyline2(route, color) {
     poly = new google.maps.Polyline();
     poly.setPath(decodedPath);
     poly.setMap(map);
+    return decodedPath;
 }
 
 function updatePoly(d) {
@@ -184,8 +185,10 @@ var addGeodataMarker2 = function (geoMain) {
         } else {
             var geodata = geoMain.Points[i];
             var myLatlng = new google.maps.LatLng(geodata.Lat, geodata.Lon);
-            createEventPolyline2(geodata.Route);
-            current = myLatlng;
+            var decodedRoute = createEventPolyline2(geodata.Route);
+            //geodata.routeEvent[]
+            //current = myLatlng;
+            current = decodedRoute[decodedRoute.length - 1];
             map.panTo(current);
             car.setPosition(current);
         }
