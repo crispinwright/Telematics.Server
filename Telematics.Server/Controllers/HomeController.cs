@@ -28,7 +28,7 @@ namespace Telematics.Server.Controllers
 
 	    public ActionResult Index()
         {
-	        //ViewBag.Users = _userService.GetUsers();
+	        ViewBag.Users = _userService.GetUsers();
             return View();
         }
 

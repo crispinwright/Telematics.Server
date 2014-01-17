@@ -10,7 +10,7 @@ namespace Telematics.Server.ServiceLayer
     public interface IUserService
     {
 
-       // IEnumerable<User> GetUsers();
+        IEnumerable<User> GetUsers();
 
     }
 }
