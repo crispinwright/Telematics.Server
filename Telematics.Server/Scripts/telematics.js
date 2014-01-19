@@ -156,7 +156,7 @@ var isInitialized = false;
 var initialize2 = function (dest) {
     
     var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
-    
+    map.panTo(dest);
     car = new google.maps.Marker({ icon: image, position: dest, animation: google.maps.Animation.DROP, map: map });
     isInitialized = true;
 //    setTimeout(function () {
