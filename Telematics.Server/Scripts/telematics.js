@@ -1,7 +1,7 @@
 ﻿var map;
 var poly;
 var animatedPolyLine;
-var image = new google.maps.MarkerImage("/Telematics.Server/content/caricon.png", null, null, new google.maps.Point(18, 10));
+var image = new google.maps.MarkerImage(appRoot+"content/caricon.png", null, null, new google.maps.Point(18, 10));
 
 var eventSnapTo = [];
 var service = new google.maps.DirectionsService();
@@ -13,7 +13,6 @@ $(function () {
     // Create a function that the hub can call to broadcast messages.
     chat.client.sendGeoData = function (geodata) {
         // Html encode display name and message.
-        // alert(geodata.Time);
         addGeodataMarker2(geodata);
     };
     $.connection.hub.start();
@@ -70,9 +69,57 @@ function createEventPolyline(origin, destination, wayPoints, color) {
 
 function createEventPolyline2(route, color) {
     var decodedPath = google.maps.geometry.encoding.decodePath(route);
-    poly = new google.maps.Polyline();
-    poly.setPath(decodedPath);
+    var stepSize = 2;
+    var len = decodedPath.length / stepSize;
+    var temporaryPoly = new google.maps.Polyline();
+    temporaryPoly.setPath(decodedPath);
+    var atdistance;
+    //cut it into 5 metre segments for rendering
+    if (temporaryPoly.Distance() > 5) {
+        atdistance = temporaryPoly.GetPointsAtDistance(5);
+        atdistance.splice(0, 0, decodedPath[0]);
+        atdistance.push(decodedPath[decodedPath.length - 1]);
+    } else {
+        atdistance = decodedPath;
+    }
+
+    var poly = new google.maps.Polyline();
+    
+    //var firstTwo = set.slice(0, 2);
+    //poly.setPath(firstTwo);
     poly.setMap(map);
+    var path = poly.getPath();
+
+    //map.panTo(firstTwo[1]);
+    //car.setPosition(firstTwo[1]);
+    //var remainingLines = decodedPath.slice(2, decodedPath.length);
+//    for (var i = 0; i < decodedPath.length; i++) {
+//        //var set = decodedPath.slice(i * stepSize, i * stepSize + stepSize);
+//        var point = new google.maps.LatLng(decodedPath[i].d, decodedPath[i].e);
+//        render(path, point);
+////        path.push(point);
+////        map.panTo(point);
+////        car.setPosition(point);
+    //    }
+    renderLoop(path, atdistance, 0);
+    return decodedPath;
+}
+function renderLoop(path,points, index) {
+    setTimeout(function () {
+        render(path, new google.maps.LatLng(points[index].d, points[index].e));
+        index = index + 1;
+        if (index == points.length)
+            return;
+        renderLoop(path, points, index);
+    }, 0);
+}
+function render(path,point) {
+    //setTimeout(function() {
+        path.push(point);
+        map.panTo(point);
+        car.setPosition(point);
+        //setTimeout
+    //}, 1000);
 }
 
 function updatePoly(d) {
@@ -132,35 +179,16 @@ function initialize() {
     };
     map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
-    //var myLatlng = new google.maps.LatLng(-36.871616, 174.709610);
-//    var marker = new google.maps.Marker({
-//        position: myLatlng,
-//        map: map,
-//        title: "Hello World!"
-//    });
-
-    //current = dest;
-//    setTimeout(function () {
-//        car = new google.maps.Marker({ icon: image, position: origin, animation: google.maps.Animation.DROP, map: map });
-//        var geo = new Object();
-//        geo.Lat = dest.lat();
-//        geo.Long = dest.lng();
-//        setTimeout(function () {
-//            addGeodataMarker(geo);
-//        }, 2000);
-//    }, 2000);
 }
 
 var isInitialized = false;
 var initialize2 = function (dest) {
-    
-    var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
-    
+    //var decodedPath =;
+    //var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
+    var dest = google.maps.geometry.encoding.decodePath(dest.Route)[0];
+    map.panTo(dest);
     car = new google.maps.Marker({ icon: image, position: dest, animation: google.maps.Animation.DROP, map: map });
     isInitialized = true;
-//    setTimeout(function () {
-//        addGeodataMarker(geo);
-//    }, 2000);
 };
 
 var addGeodataMarker = function (geodata) {
@@ -171,23 +199,21 @@ var addGeodataMarker = function (geodata) {
     car.setPosition(current);
 };
 
-
 var addGeodataMarker2 = function (geoMain) {
     for (var i = 0; i < geoMain.Points.length; i++) {
         if (!isInitialized) {
             initialize2(geoMain.Points[i]);
-            geoMain.Points.splice(0, 1);
+          //  geoMain.Points.splice(0, 1);
             setTimeout(function () {
                 addGeodataMarker2(geoMain);
             }, 2000);
             return;
         } else {
             var geodata = geoMain.Points[i];
-            var myLatlng = new google.maps.LatLng(geodata.Lat, geodata.Lon);
-            createEventPolyline2(geodata.Route);
-            current = myLatlng;
-            map.panTo(current);
-            car.setPosition(current);
+            var decodedRoute = createEventPolyline2(geodata.Route);
+            current = decodedRoute[decodedRoute.length - 1];
+//            map.panTo(current);
+//            car.setPosition(current);
         }
         
     }

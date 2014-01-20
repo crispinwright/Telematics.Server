@@ -11,9 +11,9 @@ using Telematics.Server.Const;
 using Telematics.Server.Data.DataModels;
 using Telematics.Server.ServiceLayer;
 using Telematics.Server.Data.Json;
+
 using Telematics.Server.Models;
 using User = Telematics.Server.Data.DataModels.User;
-
 
 namespace Telematics.Server.Controllers
 {
@@ -52,9 +52,9 @@ namespace Telematics.Server.Controllers
         {
             //{new Tuple<decimal, decimal>(-36.871616m, 174.709610m)},
             {new Tuple<decimal, decimal>(-36.872227m,174.705612m)},
-            {new Tuple<decimal, decimal>(-36.872543m,174.703705m)},
-            {new Tuple<decimal, decimal>(-36.872116m,174.699829m)},
-            {new Tuple<decimal, decimal>(-36.871994m,174.699036m)},
+//            {new Tuple<decimal, decimal>(-36.872543m,174.703705m)},
+//            {new Tuple<decimal, decimal>(-36.872116m,174.699829m)},
+//            {new Tuple<decimal, decimal>(-36.871994m,174.699036m)},
             {new Tuple<decimal, decimal>(-36.871964m,174.698746m)}
         };
 
@@ -86,7 +86,7 @@ namespace Telematics.Server.Controllers
             }
             return "value";
         }
-        
+
         private Point CreatePoint(double fromLat, double fromLon, double toLat, double toLon)
         {
             return new Point()

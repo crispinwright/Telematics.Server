@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using Ninject.Modules;
 using Telematics.Server.ServiceLayer;
-using Ninject.Extensions.Logging;
-using Telematics.Server.Const;
 
 namespace Telematics.Server.Controllers
 {
@@ -14,11 +14,9 @@ namespace Telematics.Server.Controllers
     public class HomeController : Controller
     {
 		private readonly IUserService _userService;
-        private readonly ILogger _logger;
 
-	    public HomeController(IUserService userService, ILogger logger)
+	    public HomeController(IUserService userService)
 	    {
-            this._logger = logger;
 		    this._userService = userService;
 	    }
 
@@ -28,19 +26,30 @@ namespace Telematics.Server.Controllers
 
 	    public ActionResult Index()
         {
-	       // ViewBag.Users = _userService.GetUsers();
+	     //   ViewBag.Users = _userService.GetUsers();
             return View();
         }
 
-        public ActionResult LogSomething()
+        public ActionResult Debug()
         {
+            var url =
+                "http://maps.googleapis.com/maps/api/directions/json?origin=-36.8730,174.7550&destination=-36.8745,174.7589&sensor=false";
+	                
+                var handler = new HttpClientHandler
+                {
+//                    CookieContainer = cookies,
+//                    UseCookies = true,
+                    UseDefaultCredentials = false,
+                    //Credentials = ,
+                    //Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
+                    UseProxy = true,
+                };
+                HttpClient cl = new HttpClient(handler);
+                var res = cl.GetAsync(url);
+	            var data = res.Result.Content.ReadAsStringAsync().Result;
 
-            _logger.Error(() => "LOG IS FULL", WindowsEventID.TelematicsConfiguration);
-
-            //ViewBag.Users = _userService.GetUsers();
-            return View();
+                return View("Debug", "_Layout", data);
         }
-
     }
    
 }
