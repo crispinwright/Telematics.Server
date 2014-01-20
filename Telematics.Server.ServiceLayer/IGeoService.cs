@@ -7,5 +7,6 @@ namespace Telematics.Server.ServiceLayer
     {
         int AddGeoUserPoints(Telematics.Server.Data.Json.GeoMain geoData);
 	    string RetrievePolyLineBetweenPoints(Point origin, Point dest);
+        void Clear();
     }
 }

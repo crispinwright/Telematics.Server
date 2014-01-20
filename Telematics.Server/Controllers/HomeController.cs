@@ -14,10 +14,12 @@ namespace Telematics.Server.Controllers
     public class HomeController : Controller
     {
 		private readonly IUserService _userService;
+        private readonly IGeoService _geoService;
 
-	    public HomeController(IUserService userService)
+        public HomeController(IGeoService geoService, IUserService userService)
 	    {
 		    this._userService = userService;
+            _geoService = geoService;
 	    }
 
 	    public HomeController()
@@ -28,6 +30,12 @@ namespace Telematics.Server.Controllers
         {
 	     //   ViewBag.Users = _userService.GetUsers();
             return View();
+        }
+
+        public ActionResult Clear()
+        {
+            _geoService.Clear();
+            return View("Debug", "_Layout", "job done");
         }
 
         public ActionResult Debug()

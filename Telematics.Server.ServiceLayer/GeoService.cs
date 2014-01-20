@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Telematics.Server.ServiceLayer
 //                    UseCookies = true,
                     UseDefaultCredentials = false,
                     //Credentials = ,
-                   // Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
+                    Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","Alex5269")),
                     UseProxy = true,
                 };
                 HttpClient cl = new HttpClient(handler);
@@ -127,6 +128,17 @@ namespace Telematics.Server.ServiceLayer
                 throw;
             }
            
+        }
+
+        public void Clear()
+        {
+            using (var context = new geoEntities())
+            {
+                context.VehicleSpeeds.RemoveRange(context.VehicleSpeeds.Where(x => true));
+                context.SaveChanges();
+            }
+            
+
         }
     }
 }
