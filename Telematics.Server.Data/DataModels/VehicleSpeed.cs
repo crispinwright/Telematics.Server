@@ -26,6 +26,7 @@ namespace Telematics.Server.Data.DataModels
         public Nullable<double> SpeedLimit { get; set; }
         public Nullable<double> Distance { get; set; }
         public string Route { get; set; }
+        public Nullable<double> SpeedPercentage { get; set; }
     
         public virtual User User { get; set; }
         public virtual UserVehicle UserVehicle { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="geoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="geoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -26,16 +26,17 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="DeviceID" Type="varchar" MaxLength="1" />
+          <Property Name="DeviceID" Type="varchar" MaxLength="10" />
           <Property Name="VehicleID" Type="int" Nullable="false" />
           <Property Name="Lat" Type="float" />
           <Property Name="Lon" Type="float" />
           <Property Name="Speed" Type="float" />
+          <Property Name="EventTime" Type="binary" MaxLength="8" StoreGeneratedPattern="Computed" />
+          <Property Name="UTCTime" Type="datetime" />
           <Property Name="SpeedLimit" Type="float" />
           <Property Name="Distance" Type="float" />
-          <Property Name="EventTime" Type="timestamp" StoreGeneratedPattern="Computed" />
-          <Property Name="UTCTime" Type="datetime" />
           <Property Name="Route" Type="nvarchar(max)" />
+          <Property Name="SpeedPercentage" Type="float" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -127,10 +128,11 @@
           <NavigationProperty Name="User" Relationship="Self.FK_VehicleSpeed_User" FromRole="VehicleSpeed" ToRole="User" />
           <NavigationProperty Name="UserVehicle" Relationship="Self.FK_VehicleSpeed_UserVehicle" FromRole="VehicleSpeed" ToRole="UserVehicle" />
           <Property Name="UTCTime" Type="DateTime" Precision="3" />
-          <Property Name="DeviceID" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SpeedLimit" Type="Double" />
           <Property Name="Distance" Type="Double" />
           <Property Name="Route" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpeedPercentage" Type="Double" />
         </EntityType>
         <Association Name="FK_UserVehicle_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -211,6 +213,7 @@
           <EntitySetMapping Name="VehicleSpeeds">
             <EntityTypeMapping TypeName="geoModel.VehicleSpeed">
               <MappingFragment StoreEntitySet="VehicleSpeed">
+                <ScalarProperty Name="SpeedPercentage" ColumnName="SpeedPercentage" />
                 <ScalarProperty Name="Route" ColumnName="Route" />
                 <ScalarProperty Name="Distance" ColumnName="Distance" />
                 <ScalarProperty Name="SpeedLimit" ColumnName="SpeedLimit" />
