@@ -1,15 +1,14 @@
 ﻿@using Telematics.Server.Data.Json
-<div id="body">
-    <div>
+<div id="body" >
+    <div style="margin:100px auto;width:960px;">
         <div id="map-canvas" />
     </div>
-
-
-    <div id="user-select">
-        <h2>Select a user</h2>
-@*        @Html.DropDownList("users",(((IEnumerable<User>)ViewBag.Users).Select(x=>new SelectListItem(){Text = x.UserID.ToString()})))*@
-        <select name="device"></select>
-    </div>
+    @**@
+    @*    <div id="user-select">*@
+    @*        <h2>Select a user</h2>*@
+    @*$1$        @Html.DropDownList("users",(((IEnumerable<User>)ViewBag.Users).Select(x=>new SelectListItem(){Text = x.UserID.ToString()})))#1#*@
+    @*        <select name="device"></select>*@
+    @*    </div>*@
 </div>  
 @section scripts
 {

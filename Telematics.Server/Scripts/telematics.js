@@ -8,6 +8,7 @@ var service = new google.maps.DirectionsService();
 var lastVertex = 0;
 var car;
 var chart;
+var colors = ["#00FF00", "#FF0000","#000000"];
 $(function () {
     var chat = $.connection.geoHub;
     // Create a function that the hub can call to broadcast messages.
@@ -83,24 +84,14 @@ function createEventPolyline2(route, color) {
         atdistance = decodedPath;
     }
 
-    var poly = new google.maps.Polyline();
+    var poly = new google.maps.Polyline({
+        strokeColor: colors[0]
+    });
     
     //var firstTwo = set.slice(0, 2);
     //poly.setPath(firstTwo);
     poly.setMap(map);
     var path = poly.getPath();
-
-    //map.panTo(firstTwo[1]);
-    //car.setPosition(firstTwo[1]);
-    //var remainingLines = decodedPath.slice(2, decodedPath.length);
-//    for (var i = 0; i < decodedPath.length; i++) {
-//        //var set = decodedPath.slice(i * stepSize, i * stepSize + stepSize);
-//        var point = new google.maps.LatLng(decodedPath[i].d, decodedPath[i].e);
-//        render(path, point);
-////        path.push(point);
-////        map.panTo(point);
-////        car.setPosition(point);
-    //    }
     renderLoop(path, atdistance, 0);
     return decodedPath;
 }
@@ -169,7 +160,7 @@ function startAnimation() {
 var current;
 
 function initialize() {
-    var origin = new google.maps.LatLng(-36.871616, 174.709610);
+    var origin = new google.maps.LatLng(-36.845577, 174.76068);
     var dest = new google.maps.LatLng(-36.872227, 174.705612);
     current = origin;
     var mapOptions = {
