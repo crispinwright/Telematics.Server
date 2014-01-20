@@ -176,6 +176,8 @@ var isInitialized = false;
 var initialize2 = function (dest) {
     //var decodedPath =;
     //var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
+    if (dest.Route == null)
+        return;
     var dest = google.maps.geometry.encoding.decodePath(dest.Route)[0];
     map.panTo(dest);
     car = new google.maps.Marker({ icon: image, position: dest, animation: google.maps.Animation.DROP, map: map });
@@ -201,6 +203,8 @@ var addGeodataMarker2 = function (geoMain) {
             return;
         } else {
             var geodata = geoMain.Points[i];
+            if (geodata.Route == null)
+                continue;
             var decodedRoute = createEventPolyline2(geodata.Route);
             current = decodedRoute[decodedRoute.length - 1];
 //            map.panTo(current);
@@ -209,5 +213,14 @@ var addGeodataMarker2 = function (geoMain) {
         
     }
 };
+
+function shadeColor(color, percent) {
+    var num = parseInt(color, 16),
+    amt = Math.round(2.55 * percent),
+    R = (num >> 16) + amt*2,
+    G = (num >> 8 & 0x00FF) - amt*3,
+    B = (num & 0x000000) ;
+    return (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
