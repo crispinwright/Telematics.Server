@@ -41,7 +41,7 @@ namespace Telematics.Server.Controllers
 //                    UseCookies = true,
                     UseDefaultCredentials = false,
                     //Credentials = ,
-                    Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","Alex5269")),
+                    //Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
                     UseProxy = true,
                 };
                 HttpClient cl = new HttpClient(handler);
