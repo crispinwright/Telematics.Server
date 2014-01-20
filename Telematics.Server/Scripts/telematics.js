@@ -71,6 +71,18 @@ function createEventPolyline2(route, color) {
     var decodedPath = google.maps.geometry.encoding.decodePath(route);
     var stepSize = 2;
     var len = decodedPath.length / stepSize;
+    var temporaryPoly = new google.maps.Polyline();
+    temporaryPoly.setPath(decodedPath);
+    var atdistance;
+    //cut it into 5 metre segments for rendering
+    if (temporaryPoly.Distance() > 5) {
+        atdistance = temporaryPoly.GetPointsAtDistance(5);
+        atdistance.splice(0, 0, decodedPath[0]);
+        atdistance.push(decodedPath[decodedPath.length - 1]);
+    } else {
+        atdistance = decodedPath;
+    }
+
     var poly = new google.maps.Polyline();
     
     //var firstTwo = set.slice(0, 2);
@@ -89,7 +101,7 @@ function createEventPolyline2(route, color) {
 ////        map.panTo(point);
 ////        car.setPosition(point);
     //    }
-    renderLoop(path, decodedPath, 0);
+    renderLoop(path, atdistance, 0);
     return decodedPath;
 }
 function renderLoop(path,points, index) {
@@ -99,7 +111,7 @@ function renderLoop(path,points, index) {
         if (index == points.length)
             return;
         renderLoop(path, points, index);
-    }, 20);
+    }, 0);
 }
 function render(path,point) {
     //setTimeout(function() {
