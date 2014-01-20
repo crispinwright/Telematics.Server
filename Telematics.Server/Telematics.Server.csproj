@@ -277,6 +277,7 @@
     <Content Include="Xml\generatecode.cmd" />
     <Content Include="Json\geoTelematics.json" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Debug.cshtml" />
     <None Include="Xml\geoTelematics.xsd">
       <SubType>Designer</SubType>
     </None>

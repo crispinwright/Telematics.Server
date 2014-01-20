@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using Ninject.Modules;
@@ -24,8 +26,29 @@ namespace Telematics.Server.Controllers
 
 	    public ActionResult Index()
         {
-	        ViewBag.Users = _userService.GetUsers();
+	     //   ViewBag.Users = _userService.GetUsers();
             return View();
+        }
+
+        public ActionResult Debug()
+        {
+            var url =
+                "http://maps.googleapis.com/maps/api/directions/json?origin=-36.8730,174.7550&destination=-36.8745,174.7589&sensor=false";
+	                
+                var handler = new HttpClientHandler
+                {
+//                    CookieContainer = cookies,
+//                    UseCookies = true,
+                    UseDefaultCredentials = false,
+                    //Credentials = ,
+                    Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","Alex5269")),
+                    UseProxy = true,
+                };
+                HttpClient cl = new HttpClient(handler);
+                var res = cl.GetAsync(url);
+	            var data = res.Result.Content.ReadAsStringAsync().Result;
+
+                return View("Debug", "_Layout", data);
         }
     }
    
