@@ -8,6 +8,7 @@ var service = new google.maps.DirectionsService();
 var lastVertex = 0;
 var car;
 var chart;
+var colors = ["#00FF00", "#FF0000","#000000"];
 $(function () {
     var chat = $.connection.geoHub;
     // Create a function that the hub can call to broadcast messages.
@@ -83,24 +84,14 @@ function createEventPolyline2(route, color) {
         atdistance = decodedPath;
     }
 
-    var poly = new google.maps.Polyline();
+    var poly = new google.maps.Polyline({
+        strokeColor: colors[0]
+    });
     
     //var firstTwo = set.slice(0, 2);
     //poly.setPath(firstTwo);
     poly.setMap(map);
     var path = poly.getPath();
-
-    //map.panTo(firstTwo[1]);
-    //car.setPosition(firstTwo[1]);
-    //var remainingLines = decodedPath.slice(2, decodedPath.length);
-//    for (var i = 0; i < decodedPath.length; i++) {
-//        //var set = decodedPath.slice(i * stepSize, i * stepSize + stepSize);
-//        var point = new google.maps.LatLng(decodedPath[i].d, decodedPath[i].e);
-//        render(path, point);
-////        path.push(point);
-////        map.panTo(point);
-////        car.setPosition(point);
-    //    }
     renderLoop(path, atdistance, 0);
     return decodedPath;
 }
@@ -169,7 +160,7 @@ function startAnimation() {
 var current;
 
 function initialize() {
-    var origin = new google.maps.LatLng(-36.871616, 174.709610);
+    var origin = new google.maps.LatLng(-36.845577, 174.76068);
     var dest = new google.maps.LatLng(-36.872227, 174.705612);
     current = origin;
     var mapOptions = {
@@ -185,6 +176,8 @@ var isInitialized = false;
 var initialize2 = function (dest) {
     //var decodedPath =;
     //var dest = new google.maps.LatLng(dest.Lat, dest.Lon);
+    if (dest.Route == null)
+        return;
     var dest = google.maps.geometry.encoding.decodePath(dest.Route)[0];
     map.panTo(dest);
     car = new google.maps.Marker({ icon: image, position: dest, animation: google.maps.Animation.DROP, map: map });
@@ -210,6 +203,8 @@ var addGeodataMarker2 = function (geoMain) {
             return;
         } else {
             var geodata = geoMain.Points[i];
+            if (geodata.Route == null)
+                continue;
             var decodedRoute = createEventPolyline2(geodata.Route);
             current = decodedRoute[decodedRoute.length - 1];
 //            map.panTo(current);
@@ -218,5 +213,14 @@ var addGeodataMarker2 = function (geoMain) {
         
     }
 };
+
+function shadeColor(color, percent) {
+    var num = parseInt(color, 16),
+    amt = Math.round(2.55 * percent),
+    R = (num >> 16) + amt*2,
+    G = (num >> 8 & 0x00FF) - amt*3,
+    B = (num & 0x000000) ;
+    return (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
