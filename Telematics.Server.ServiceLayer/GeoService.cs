@@ -74,7 +74,8 @@ namespace Telematics.Server.ServiceLayer
                         VehicleID = geoData.VehicleID,
                         UTCTime = i.UTCTime,
                         DeviceID = geoData.DeviceID,
-                        Route = i.Route
+                        Route = i.Route,
+                        SpeedPercentage = i.SpeedPercentage
                     })
                     );
             try
@@ -115,8 +116,12 @@ namespace Telematics.Server.ServiceLayer
                         Task.Factory.StartNew((
                             () =>
                             {
-                                orderedPoints[i1].Route =
-                                    RetrievePolyLineBetweenPoints(orderedPoints[i1 - 1], orderedPoints[i1]);
+                                Point orderedPoint = orderedPoints[i1];
+                                int nearestSpeedLimit = context.GetNearestSpeedLimit(orderedPoint.Lat,orderedPoint.Lon);
+                                
+                                orderedPoint.SpeedPercentage =(orderedPoint.Speed/ (double)nearestSpeedLimit);
+                                orderedPoint.Route =
+                                    RetrievePolyLineBetweenPoints(orderedPoints[i1 - 1], orderedPoint);
                             })));
                 }
                 

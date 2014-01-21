@@ -21,6 +21,7 @@ namespace Telematics.Server.Data.Json
         public int Speed { get; set; }
         public DateTime UTCTime { get; set; }
 		public string Route { get; set; }
+        public double SpeedPercentage { get; set; }
     }
 
 	public class User
