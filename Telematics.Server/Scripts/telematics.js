@@ -83,9 +83,12 @@ function createEventPolyline2(route, color) {
     } else {
         atdistance = decodedPath;
     }
-
+    var temp = colors[0];
+    if (color != null && color > 1) {
+        temp = '#'+ shadeColor('00FF00', (color - 1) * 100);
+    }
     var poly = new google.maps.Polyline({
-        strokeColor: colors[0]
+        strokeColor: temp
     });
     
     //var firstTwo = set.slice(0, 2);
@@ -205,7 +208,7 @@ var addGeodataMarker2 = function (geoMain) {
             var geodata = geoMain.Points[i];
             if (geodata.Route == null)
                 continue;
-            var decodedRoute = createEventPolyline2(geodata.Route);
+            var decodedRoute = createEventPolyline2(geodata.Route, geodata.SpeedPercentage);
             current = decodedRoute[decodedRoute.length - 1];
 //            map.panTo(current);
 //            car.setPosition(current);

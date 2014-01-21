@@ -120,7 +120,7 @@ namespace Telematics.Server.ServiceLayer
 //                                int nearestSpeedLimit = context.GetNearestSpeedLimit(orderedPoint.Lat,orderedPoint.Lon);
 //                                
 //                                orderedPoint.SpeedPercentage =(orderedPoint.Speed/ (double)nearestSpeedLimit);
-                                orderedPoint.SpeedPercentage = rand.Next(50,120)/100d;
+                                orderedPoint.SpeedPercentage = rand.Next(50,180)/100d;
                                 orderedPoint.Route =
                                     RetrievePolyLineBetweenPoints(orderedPoints[i1 - 1], orderedPoint);
                             })));

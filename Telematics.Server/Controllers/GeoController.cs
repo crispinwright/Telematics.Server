@@ -100,9 +100,12 @@ namespace Telematics.Server.Controllers
                 {
                     Lat = toLat,
                     Lon = toLon
-                })
+                }),
+                SpeedPercentage = 1.8//rand.Next(50, 120) / 100d
             };
         }
+        Random rand = new Random();
+
 
 
         // POST api/values
