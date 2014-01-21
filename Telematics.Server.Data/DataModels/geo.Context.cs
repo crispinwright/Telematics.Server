@@ -12,6 +12,8 @@ namespace Telematics.Server.Data.DataModels
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class geoEntities : DbContext
     {
@@ -28,5 +30,18 @@ namespace Telematics.Server.Data.DataModels
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserVehicle> UserVehicles { get; set; }
         public virtual DbSet<VehicleSpeed> VehicleSpeeds { get; set; }
+    
+        public virtual int GetNearestSpeedLimit(Nullable<double> lAT, Nullable<double> lON)
+        {
+            var lATParameter = lAT.HasValue ?
+                new ObjectParameter("LAT", lAT) :
+                new ObjectParameter("LAT", typeof(double));
+    
+            var lONParameter = lON.HasValue ?
+                new ObjectParameter("LON", lON) :
+                new ObjectParameter("LON", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetNearestSpeedLimit", lATParameter, lONParameter);
+        }
     }
 }

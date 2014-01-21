@@ -63,7 +63,6 @@ namespace Telematics.Server.ServiceLayer
             //get the last point added till now
 
             AddRouteInformationToPoints(geoData, context, orderedPoints);
-
             geoData.Points.ToObservable().Subscribe(i =>
                 context.VehicleSpeeds.Add(
                     new VehicleSpeed
@@ -80,13 +79,14 @@ namespace Telematics.Server.ServiceLayer
                     );
             try
             {
-                return context.SaveChanges();
-
+                var saved = context.SaveChanges();
+                return saved;
             }
             catch (DbEntityValidationException ex)
             {
                 return 0;
             }
+
         }
 
         private void AddRouteInformationToPoints(GeoMain geoData, geoEntities context, List<Point> orderedPoints)

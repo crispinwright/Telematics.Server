@@ -74,6 +74,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetNearestSpeedLimit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LAT" Type="float" Mode="In" />
+          <Parameter Name="LON" Type="float" Mode="In" />
+        </Function>
         <EntityContainer Name="geoModelStoreContainer">
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserVehicle" EntityType="Self.UserVehicle" Schema="dbo" store:Type="Tables" />
@@ -186,6 +190,10 @@
             <End Role="UserVehicle" EntitySet="UserVehicles" />
             <End Role="VehicleSpeed" EntitySet="VehicleSpeeds" />
           </AssociationSet>
+          <FunctionImport Name="GetNearestSpeedLimit">
+            <Parameter Name="LAT" Mode="In" Type="Double" />
+            <Parameter Name="LON" Mode="In" Type="Double" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -229,6 +237,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetNearestSpeedLimit" FunctionName="geoModel.Store.GetNearestSpeedLimit" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
