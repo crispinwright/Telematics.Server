@@ -117,9 +117,9 @@ namespace Telematics.Server.ServiceLayer
                             () =>
                             {
                                 Point orderedPoint = orderedPoints[i1];
-                                int nearestSpeedLimit = context.GetNearestSpeedLimit(orderedPoint.Lat,orderedPoint.Lon);
-                                
-                                orderedPoint.SpeedPercentage =(orderedPoint.Speed/ (double)nearestSpeedLimit);
+//                                int nearestSpeedLimit = context.GetNearestSpeedLimit(orderedPoint.Lat,orderedPoint.Lon);
+//                                
+//                                orderedPoint.SpeedPercentage =(orderedPoint.Speed/ (double)nearestSpeedLimit);
                                 orderedPoint.Route =
                                     RetrievePolyLineBetweenPoints(orderedPoints[i1 - 1], orderedPoint);
                             })));
