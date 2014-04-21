@@ -41,10 +41,10 @@ namespace Telematics.DataCreator
                 //                    UseCookies = true,
                 UseDefaultCredentials = false,
                 //Credentials = ,
-                Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
+                //Proxy = new WebProxy("http://w8dvaklpx01", false, new string[] { },new NetworkCredential("si554437","")),
                 UseProxy = true,
             };
-            HttpClient cl = new HttpClient(handler) { BaseAddress = new Uri("http://ktelematics3.azurewebsites.net/") };
+            HttpClient cl = new HttpClient(handler) { BaseAddress = new Uri("http://ktelematics.azurewebsites.net/") };
 			//	cl.BaseAddress = new Uri("http://localhost/telematics.server/");
 			cl.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 			for (int i = 0; i < points.Count/groupsize; i++)
